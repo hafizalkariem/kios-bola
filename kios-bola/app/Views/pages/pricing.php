@@ -20,7 +20,7 @@
             <h3>Manchester United</h3>
             <img src="<?= base_url('/asset/img/manchester-united.png') ?>" alt="manchester-united" class="klub">
             <div class="btn-wrap">
-              <a href="<?= base_url('/shop/manchester_united') ?>" class="btn-buy">lihat jersey</a>
+              <a href="<?= base_url('/jersey') ?>" class="btn-buy">lihat jersey</a>
             </div>
           </div>
         </div>
@@ -30,7 +30,7 @@
             <h3>Barcelona</h3>
             <img src="<?= base_url('/asset/img/barcelona.png') ?>" alt="manchester-united" class="klub">
             <div class="btn-wrap">
-              <a href="<?= base_url('/shop/barcelona') ?>" class="btn-buy">lihat jersey</a>
+              <a href="<?= base_url('/jersey') ?>" class="btn-buy">lihat jersey</a>
             </div>
           </div>
         </div>
@@ -40,7 +40,7 @@
             <h3>Manchester City</h3>
             <img src="<?= base_url('/asset/img/manchester-city.png') ?>" alt="manchester-united" class="klub">
             <div class="btn-wrap">
-              <a href="<?= base_url('/shop/manchester_city') ?>" class="btn-buy">lihat jersey</a>
+              <a href="<?= base_url('/jersey') ?>" class="btn-buy">lihat jersey</a>
             </div>
           </div>
         </div>
@@ -50,7 +50,7 @@
             <h3>Bayern Muenchen</h3>
             <img src="<?= base_url('/asset/img/bayern-muenchen.png') ?>" alt="manchester-united" class="klub">
             <div class="btn-wrap">
-              <a href="<?= base_url('/shop/bayern_muenchen') ?>" class="btn-buy">lihat jersey</a>
+              <a href="<?= base_url('/jersey') ?>" class="btn-buy">lihat jersey</a>
             </div>
           </div>
         </div>
@@ -60,7 +60,7 @@
             <h3>Liverpool</h3>
             <img src="<?= base_url('/asset/img/liverpool.png') ?>" alt="manchester-united" class="klub">
             <div class="btn-wrap">
-              <a href="<?= base_url('/shop/liverpool') ?>" class="btn-buy">lihat jersey</a>
+              <a href="<?= base_url('/jersey') ?>" class="btn-buy">lihat jersey</a>
             </div>
           </div>
         </div>
@@ -70,7 +70,7 @@
             <h3>Paris Saint-Germain</h3>
             <img src="<?= base_url('/asset/img/psg.png') ?>" alt="manchester-united" class="klub">
             <div class="btn-wrap">
-              <a href="<?= base_url('/shop/psg') ?>" class="btn-buy">lihat jersey</a>
+              <a href="<?= base_url('/jersey') ?>" class="btn-buy">lihat jersey</a>
             </div>
           </div>
         </div>

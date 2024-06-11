@@ -1511,6 +1511,127 @@ section {
   }
 }
 
+/* ---------------------------------------------------------- */
+/* # jersey */
+/* ---------------------------------------------------------- */
+
+.jersey .box {
+  padding: 20px;
+  background: #fff;
+  text-align: center;
+  border: 1px solid #eef0ef;
+  border-radius: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.jersey h3 {
+  font-weight: 400;
+  margin: -20px -20px 20px -20px;
+  padding: 20px 15px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #777777;
+  background: #f8f8f8;
+}
+
+.jersey h4 {
+  font-size: 36px;
+  color: #cf1006;
+  font-weight: 600;
+  font-family: "Poppins", sans-serif;
+  margin-bottom: 20px;
+}
+
+.jersey h4 sup {
+  font-size: 20px;
+  top: -15px;
+  left: -3px;
+}
+
+.jersey h4 span {
+  color: #bababa;
+  font-size: 16px;
+  font-weight: 300;
+}
+
+.jersey ul {
+  padding: 0;
+  list-style: none;
+  color: #444444;
+  text-align: center;
+  line-height: 20px;
+  font-size: 14px;
+}
+
+.jersey ul li {
+  padding-bottom: 16px;
+}
+
+.jersey ul i {
+  color: #cf1006;
+  font-size: 18px;
+  padding-right: 4px;
+}
+
+.jersey ul .na {
+  color: #ccc;
+  text-decoration: line-through;
+}
+
+.jersey .btn-wrap {
+  margin: 20px -20px -20px -20px;
+  padding: 20px 15px;
+  background: #f8f8f8;
+  text-align: center;
+}
+
+.jersey .btn-buy {
+  background: #cf1006;
+  display: inline-block;
+  padding: 8px 35px;
+  border-radius: 50px;
+  color: #fff;
+  transition: none;
+  font-size: 14px;
+  font-weight: 400;
+  font-family: "Raleway", sans-serif;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.jersey .btn-buy:hover {
+  background: #ff0d00;
+}
+
+.jersey .featured h3 {
+  color: #fff;
+  background: #cf1006;
+}
+
+.jersey .advanced {
+  width: 200px;
+  position: absolute;
+  top: 18px;
+  right: -68px;
+  transform: rotate(45deg);
+  z-index: 1;
+  font-size: 14px;
+  padding: 1px 0 3px 0;
+  background: #cf1006;
+  color: #fff;
+}
+
+.small-img {
+  width: 50px; /* Gambar kecil */
+  height: 50px; /* Gambar kecil */
+  object-fit: contain; /* Memastikan gambar tidak terdistorsi */
+}
+
+.btn-shop {
+  background-color: none !important;
+  border: 1px solid #cf1006 !important;
+}
 /*--------------------------------------------------------------
 # Footer
 --------------------------------------------------------------*/

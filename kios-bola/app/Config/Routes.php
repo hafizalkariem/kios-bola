@@ -15,3 +15,5 @@ $routes->get('/shop/manchester_city', 'jersey::manchester_city');
 $routes->get('/shop/barcelona', 'jersey::barcelona');
 $routes->get('/shop/psg', 'jersey::psg');
 $routes->get('/shop/bayern_muenchen', 'jersey::bayern_muenchen');
+$routes->get('/jersey', 'jersey::index');
+$routes->get('/admin/jersey', 'admin::index');

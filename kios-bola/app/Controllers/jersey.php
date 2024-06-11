@@ -2,54 +2,28 @@
 
 namespace App\Controllers;
 
+use App\Models\JerseyModel;
+
 class jersey extends BaseController
 {
-    public function manchester_united()
+
+    protected $JerseyModel;
+    public function __construct()
     {
-        $data = [
-            'title' => 'jersey | MU',
-            'activePage' => 'pricing'
-        ];
-        return view('jersey/manchester_united', $data);
+        $this->JerseyModel = new JerseyModel();
     }
-    public function liverpool()
-    {
-        $data = [
-            'title' => 'jersey | Liverpool',
-            'activePage' => 'pricing'
-        ];
-        return view('jersey/liverpool', $data);
-    }
-    public function barcelona()
-    {
-        $data = [
-            'title' => 'jersey | FC Barcelona',
-            'activePage' => 'pricing'
-        ];
-        return view('jersey/barcelona', $data);
-    }
-    public function manchester_city()
-    {
-        $data = [
-            'title' => 'jersey | Man City',
-            'activePage' => 'pricing'
-        ];
-        return view('jersey/manchester_city', $data);
-    }
-    public function psg()
-    {
-        $data = [
-            'title' => 'jersey | PSG',
-            'activePage' => 'pricing'
-        ];
-        return view('jersey/psg', $data);
-    }
-    public function bayern_muenchen()
-    {
-        $data = [
-            'title' => 'jersey | Bayern Munich',
-            'activePage' => 'pricing'
-        ];
-        return view('jersey/bayern_muenchen', $data);
+    public function index()
+    { {
+            $Jersey = $this->JerseyModel->findAll();
+            $data = [
+                'title' => 'Jersey | Kios Bola',
+                'activePage' => 'pricing',
+                'Jersey' => $Jersey
+
+            ];
+
+            // $JerseyModel = new JerseyModel();
+            return view('jersey/jersey', $data);
+        }
     }
 }

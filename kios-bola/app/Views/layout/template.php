@@ -29,7 +29,7 @@
     <link href="<?= base_url('asset/css/style.css'); ?>" rel="stylesheet">
     <!-- link bootsrapt -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- =======================================================
     * Template Name: Mentor - v4.9.1
     * Template URL: https://bootstrapmade.com/mentor-free-education-bootstrap-theme/
@@ -76,6 +76,14 @@
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav><!-- .navbar -->
 
+            <!-- search -->
+            <form class="d-flex mx-4" role="search">
+                <input class="form-control me-2 rounded-pill" type="search" placeholder="Search" aria-label="Search">
+
+                <button class="btn btn-outline-success rounded-pill bg-danger text-white" type="submit">Search</button>
+            </form>
+            <!-- end search -->
+
             <a href="<?= base_url('/courses'); ?>" class="get-started-btn">Get Started</a>
 
         </div>
@@ -101,22 +109,21 @@
                     <div class="col-lg-2 col-md-6 footer-links">
                         <h4>Useful Links</h4>
                         <ul>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="<?= base_url('/') ?>">Home</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="<?= base_url('/about') ?>">About us</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="<?= base_url('/shop') ?>">Shop</a></li>
+
                         </ul>
                     </div>
 
                     <div class="col-lg-3 col-md-6 footer-links">
                         <h4>Our Services</h4>
                         <ul>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="<?= base_url('') ?>">Web Design</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="<?= base_url('') ?>">Web Development</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="<?= base_url('') ?>">Product Management</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="<?= base_url('') ?>">Marketing</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="<?= base_url('') ?>">Graphic Design</a></li>
                         </ul>
                     </div>
 
@@ -147,11 +154,11 @@
                 </div>
             </div>
             <div class="social-links text-center text-md-right pt-3 pt-md-0">
-                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                <a href="<?= base_url('') ?>" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="<?= base_url('') ?>" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="<?= base_url('') ?>" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="<?= base_url('') ?>" class="google-plus"><i class="bx bxl-skype"></i></a>
+                <a href="<?= base_url('') ?>" class="linkedin"><i class="bx bxl-linkedin"></i></a>
             </div>
         </div>
     </footer><!-- End Footer -->

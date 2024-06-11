@@ -34,6 +34,11 @@ h6 {
   font-family: "Raleway", sans-serif;
 }
 
+.btn {
+  background: #ff0d00;
+  color: #fff;
+}
+
 /*--------------------------------------------------------------
 # Back to top button
 --------------------------------------------------------------*/
@@ -114,6 +119,11 @@ h6 {
   100% {
     transform: rotate(360deg);
   }
+}
+.btn.btn-outline-success.rounded-pill {
+  background-color: red; /* Ubah latar belakang menjadi merah */
+  color: white; /* Ubah warna teks menjadi putih */
+  border: none;
 }
 
 /*--------------------------------------------------------------
@@ -303,6 +313,19 @@ nav ul li.active a {
   .navbar .dropdown .dropdown:hover > ul {
     left: -100%;
   }
+}
+.search-input {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.search-input input {
+  padding-left: 2.5rem;
+}
+.search-input .bi-search {
+  position: absolute;
+  left: 10px;
+  color: #aaa;
 }
 
 /**
@@ -678,6 +701,7 @@ section {
 /*--------------------------------------------------------------
 # Why Us
 --------------------------------------------------------------*/
+
 .why-us .content {
   padding: 30px;
   background: #cf1006;
@@ -855,6 +879,11 @@ section {
 .courses .trainer .trainer-rank {
   font-size: 18px;
   color: #657a6d;
+}
+.card-container {
+  display: flex;
+  flex-wrap: wrap; /* Wrap to the next line if there's not enough space */
+  gap: 20px; /* Optional: add space between the cards */
 }
 
 /*--------------------------------------------------------------

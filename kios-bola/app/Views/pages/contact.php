@@ -8,8 +8,7 @@
     <div class="breadcrumbs" data-aos="fade-in">
         <div class="container">
             <h2>Contact Us</h2>
-            <p>Est dolorum ut non facere possimus quibusdam eligendi voluptatem. Quia id aut similique quia voluptas sit
-                quaerat debitis. Rerum omnis ipsam aperiam consequatur laboriosam nemo harum praesentium. </p>
+            <p>Jangan ragu untuk menghubungi kami dengan pertanyaan atau masalah apa pun. Kami berkomitmen untuk memberikan bantuan dan menangani segala isu yang Anda hadapi. Masukan Anda sangat berharga bagi kami, dan kami berusaha untuk memberikan pelayanan terbaik.</p>
         </div>
     </div><!-- End Breadcrumbs -->
 

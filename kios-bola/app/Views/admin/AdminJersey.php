@@ -1,25 +1,20 @@
 <?= $this->extend('layout/template'); ?>
 <?= $this->section('content'); ?>
 <main id="main">
-    <!-- ======= Breadcrumbs ======= -->
-    <div class="breadcrumbs" data-aos="fade-in">
-        <div class="container">
-            <h2 class="">Admin Editor</h2>
-        </div>
-    </div>
-    <!-- End Breadcrumbs -->
 
+    <?= $this->include('layout/breadcrumbs'); ?>
     <section id="admin" class="admin">
         <div class="container" data-aos="fade-up">
             <div class="row">
-                <div class="col my-5">
+                <div class="col-12 my-3">
                     <h2 class="my-5">
-                        Daftar Jersey
+                        Daftar Klub
                     </h2>
-                    <div class="btn btn-primary mb-3">Tambah Jersey</div>
-                    <table class="table">
+                    <div class="btn btn-primary mb-3">Tambah Klub</div>
 
-                        <thead class="table-light">
+                    <table class="table table-hover">
+
+                        <thead class="table-light text-center">
                             <tr>
                                 <th scope="col">ID</th>
                                 <th scope="col">Sampul</th>
@@ -31,12 +26,12 @@
                                 <th scope="col">Opsi</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <?= $i = 1; ?>
-                            <?php foreach ($Jersey as $j) : ?>
+                        <tbody class="text-center">
+                            <?php $i = 1;
+                            foreach ($Jersey as $j) : ?>
                                 <tr>
                                     <th scope="row"><?= $i++; ?></th>
-                                    <td><img src="/asset/img/<?= $j['sampul']; ?>" alt="" class="sampul"></td>
+                                    <td><img src="/asset/img/jersey/<?= $j['sampul']; ?>" alt="" class="sampul"></td>
                                     <td><?= $j['apparel']; ?></td>
                                     <td><?= $j['id_klub']; ?></td>
                                     <td><?= $j['judul']; ?></td>
@@ -44,17 +39,18 @@
                                     <td> Rp <?= $j['harga']; ?></td>
                                     <td>
                                         <div class="row">
-                                            <div class="col">
+                                            <div class="d-flex justify-content-center gap-3">
                                                 <a href="" class="btn btn-danger">delete</a>
                                                 <a href="" class="btn btn-success">update</a>
                                             </div>
                                         </div>
                                     </td>
                                 </tr>
-
+                            <?php endforeach; ?>
                         </tbody>
-                    <?php endforeach; ?>
+
                     </table>
+
                 </div>
             </div>
         </div>

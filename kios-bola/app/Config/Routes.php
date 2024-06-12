@@ -17,3 +17,4 @@ $routes->get('/shop/psg', 'jersey::psg');
 $routes->get('/shop/bayern_muenchen', 'jersey::bayern_muenchen');
 $routes->get('/jersey', 'jersey::index');
 $routes->get('/admin/jersey', 'Admin::index');
+$routes->get('/admin/klub', 'Admin::add_klub');

@@ -2,8 +2,18 @@
 
 namespace App\Controllers;
 
+use App\Models\KlubModel;
+use App\Models\JerseyModel;
+
 class page extends BaseController
 {
+    protected $KlubModel;
+    public function __construct()
+    {
+        $this->KlubModel = new KlubModel();
+    }
+
+
     public function index()
     {
         $data = [
@@ -30,9 +40,13 @@ class page extends BaseController
     }
     public function pricing()
     {
+        $Klub = $this->KlubModel->findAll();
+
         $data = [
-            'title' => 'shoping',
-            'activePage' => 'pricing'
+            'title' => 'Daftar Klub | Kios Bola',
+            'activePage' => 'pricing',
+            'Klub' => $Klub
+
         ];
         return view('pages/pricing', $data);
     }

@@ -14,66 +14,18 @@
     <div class="container" data-aos="fade-up">
 
       <div class="row">
-
-        <div class="col-lg-3 col-md-6">
-          <div class="box">
-            <h3>Manchester United</h3>
-            <img src="<?= base_url('/asset/img/manchester-united.png') ?>" alt="manchester-united" class="klub">
-            <div class="btn-wrap">
-              <a href="<?= base_url('/jersey') ?>" class="btn-buy">lihat jersey</a>
+        <?php foreach ($Klub as $k) : ?>
+          <div class="col-lg-3 col-md-6 mb-3">
+            <div class="box">
+              <h3><?= $k['nama']; ?></h3>
+              <img src="asset/img/klub/<?= $k['logo']; ?>" alt="<?= $k['nama']; ?>" class="klub">
+              <div class="btn-wrap">
+                <a href="<?= base_url('/jersey?club_id=' . $k['id_klub']) ?>" class="btn-buy">lihat jersey</a>
+              </div>
             </div>
           </div>
-        </div>
+        <?php endforeach; ?>
 
-        <div class="col-lg-3 col-md-6">
-          <div class="box">
-            <h3>Barcelona</h3>
-            <img src="<?= base_url('/asset/img/barcelona.png') ?>" alt="manchester-united" class="klub">
-            <div class="btn-wrap">
-              <a href="<?= base_url('/jersey') ?>" class="btn-buy">lihat jersey</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6">
-          <div class="box">
-            <h3>Manchester City</h3>
-            <img src="<?= base_url('/asset/img/manchester-city.png') ?>" alt="manchester-united" class="klub">
-            <div class="btn-wrap">
-              <a href="<?= base_url('/jersey') ?>" class="btn-buy">lihat jersey</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6">
-          <div class="box">
-            <h3>Bayern Muenchen</h3>
-            <img src="<?= base_url('/asset/img/bayern-muenchen.png') ?>" alt="manchester-united" class="klub">
-            <div class="btn-wrap">
-              <a href="<?= base_url('/jersey') ?>" class="btn-buy">lihat jersey</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6">
-          <div class="box">
-            <h3>Liverpool</h3>
-            <img src="<?= base_url('/asset/img/liverpool.png') ?>" alt="manchester-united" class="klub">
-            <div class="btn-wrap">
-              <a href="<?= base_url('/jersey') ?>" class="btn-buy">lihat jersey</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6">
-          <div class="box">
-            <h3>Paris Saint-Germain</h3>
-            <img src="<?= base_url('/asset/img/psg.png') ?>" alt="manchester-united" class="klub">
-            <div class="btn-wrap">
-              <a href="<?= base_url('/jersey') ?>" class="btn-buy">lihat jersey</a>
-            </div>
-          </div>
-        </div>
 
       </div>
 

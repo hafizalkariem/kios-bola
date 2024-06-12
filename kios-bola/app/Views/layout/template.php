@@ -54,18 +54,16 @@
                     <li class="<?= $activePage == 'about' ? 'active' : ''; ?>"><a href="<?= base_url('/about'); ?>">About</a></li>
                     <li class="<?= $activePage == 'contact' ? 'active' : ''; ?>"><a href="<?= base_url('/contact'); ?>">Contact</a></li>
                     <li class="<?= $activePage == 'pricing' ? 'active' : ''; ?>"><a href="<?= base_url('/shop'); ?>">Shop</a></li>
-                    <li class="dropdown <?= $activePage == 'AdminJersey' ? 'active' : ''; ?>"><a href="#"><span>Admin</span> <i class="bi bi-chevron-down"></i></a>
+                    <li class="dropdown <?= ($activePage == 'AdminJersey' || $activePage == 'AdminKlub' || $activePage == 'AdminApparel') ? 'active' : ''; ?>"><a href="#"><span>Admin</span> <i class="bi bi-chevron-down"></i></a>
                         <ul>
-                            <li><a href="<?= base_url('/admin/jersey'); ?>">Jersey</a></li>
-                            <li><a href="<?= base_url('/admin/klub'); ?>">Klub</a></li>
-                            <li><a href="<?= base_url('/admin/apparel'); ?>">Apparel</a></li>
+                            <li class="<?= $activePage == 'AdminJersey' ? 'active' : ''; ?>"><a href="<?= base_url('/admin/jersey'); ?>">Jersey</a></li>
+                            <li class="<?= $activePage == 'AdminKlub' ? 'active' : ''; ?>"><a href="<?= base_url('/admin/klub'); ?>">Klub</a></li>
+                            <li class="<?= $activePage == 'AdminApparel' ? 'active' : ''; ?>"><a href="<?= base_url('/admin/apparel'); ?>">Apparel</a></li>
                         </ul>
                     </li>
-
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav><!-- .navbar -->
-
             <!-- search -->
             <form class="d-flex mx-4" role="search">
                 <input class="form-control me-2 rounded-pill" type="search" placeholder="Search" aria-label="Search">

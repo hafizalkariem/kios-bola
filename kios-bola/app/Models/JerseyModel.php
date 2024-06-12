@@ -9,15 +9,27 @@ class JerseyModel extends Model
     protected $table = 'jersey';
     protected $useTimestamps = true;
 
-    // Di dalam model Anda, misalnya JerseyModel.php
-    public function getJerseys()
+    public function findAllWithClub()
     {
-        $builder = $this->db->table('jersey');
-        $builder->select('jersey.*, klub.nama as nama_klub');
-        $builder->join('klub', 'klub.id = jersey.id_klub');
-        $query = $builder->get();
-        return $query->getResultArray();
+        return $this->select('jersey.*, klub.nama AS club_name, klub.logo AS club_logo')
+            ->join('klub', 'klub.id_klub = jersey.id_klub')
+            ->findAll();
     }
+    public function findByClub($clubId)
+    {
+        return $this->select('jersey.*, klub.nama AS club_name, klub.logo AS club_logo')
+            ->join('klub', 'klub.id_klub = jersey.id_klub')
+            ->where('jersey.id_klub', $clubId)
+            ->findAll();
+    }
+}
+    // public function getJerseys()
+    // {
+    //     $builder = $this->db->table('jersey');
+    //     $builder->select('jersey.*, klub.nama as nama_klub');
+    //     $builder->join('klub', 'klub.id = jersey.id_klub');
+    //     $query = $builder->get();
+    //     return $query->getResultArray();
+    // }
 
     // ...
-}

@@ -12,17 +12,20 @@
     <section id="jersey" class="jersey">
         <div class="container" data-aos="fade-up">
             <div class="row row-cols-lg-3 ">
-                <?php foreach ($Jersey as $j) : ?>
+                <?php foreach ($Jerseys as $j) : ?>
                     <div class="col-lg-4 col-md-6">
                         <div class="card mb-3" style="max-width: 540px;">
                             <div class="row g-0">
                                 <div class="col-md-4">
-                                    <img src="asset/img/<?= $j['sampul']; ?>" class="img-fluid rounded-start" alt="...">
+                                    <img src="asset/img/jersey/<?= $j['sampul']; ?>" class="img-fluid rounded-start" alt="...">
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body">
                                         <h5 class="card-title my-3"><strong><?= $j['judul']; ?></strong></h5>
-                                        <img src="asset/img/<?= $j['apparel']; ?>" class="small-img mb-3" alt="apparel">
+                                        <div class="d-flex justify-content-start gap-3">
+                                            <img src="asset/img/apparel/<?= $j['apparel']; ?>" class="small-img mb-3" alt="apparel">
+                                            <img src="asset/img/klub/<?= $j['club_logo']; ?>" class="small-img mb-3" alt="club_logo">
+                                        </div>
                                         <h5 class="card-text"><strong>Rp <?= $j['harga']; ?></strong></h5>
                                         <p class="card-text my-3">Jumlah Tersedia : <strong><?= $j['ketersediaan']; ?></strong></p>
                                         <div class="col d-flex justify-content-start gap-3 mb-3">

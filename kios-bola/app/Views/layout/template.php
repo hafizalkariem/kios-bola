@@ -54,7 +54,7 @@
                     <li class="<?= $activePage == 'about' ? 'active' : ''; ?>"><a href="<?= base_url('/about'); ?>">About</a></li>
                     <li class="<?= $activePage == 'contact' ? 'active' : ''; ?>"><a href="<?= base_url('/contact'); ?>">Contact</a></li>
                     <li class="<?= $activePage == 'pricing' ? 'active' : ''; ?>"><a href="<?= base_url('/shop'); ?>">Shop</a></li>
-                    <li class="dropdown"><a href="#"><span>Admin</span> <i class="bi bi-chevron-down"></i></a>
+                    <li class="dropdown <?= $activePage == 'AdminJersey' ? 'active' : ''; ?>"><a href="#"><span>Admin</span> <i class="bi bi-chevron-down"></i></a>
                         <ul>
                             <li><a href="<?= base_url('/admin/jersey'); ?>">Jersey</a></li>
                             <li><a href="<?= base_url('/admin/klub'); ?>">Klub</a></li>

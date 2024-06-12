@@ -1632,6 +1632,16 @@ section {
   background-color: none !important;
   border: 1px solid #cf1006 !important;
 }
+
+/* admin */
+.sampul {
+  width: 100px;
+}
+
+.admin .table > tbody > tr > * {
+  vertical-align: middle;
+}
+
 /*--------------------------------------------------------------
 # Footer
 --------------------------------------------------------------*/

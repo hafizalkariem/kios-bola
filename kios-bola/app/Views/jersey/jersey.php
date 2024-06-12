@@ -4,7 +4,7 @@
     <!-- ======= Breadcrumbs ======= -->
     <div class="breadcrumbs" data-aos="fade-in">
         <div class="container">
-            <h2 class="">Daftar Klub</h2>
+            <h2 class="">Jersey Tersedia</h2>
         </div>
     </div><!-- End Breadcrumbs -->
 
@@ -31,7 +31,7 @@
                                             </a>
                                             <a href="#" class="btn btn-primary">Beli sekarang</a>
                                         </div>
-                                        <p class="card-text"><small class="text-body-secondary"><?= $j['created_at']; ?></small></p>
+                                        <p class="card-text"><small class="text-body-secondary">dibuat pada <strong><?= $j['created_at']; ?></strong></small></p>
                                     </div>
                                 </div>
                             </div>

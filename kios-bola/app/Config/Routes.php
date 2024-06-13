@@ -18,3 +18,5 @@ $routes->get('/shop/bayern_muenchen', 'jersey::bayern_muenchen');
 $routes->get('/jersey', 'jersey::index');
 $routes->get('/admin/jersey', 'Admin::index');
 $routes->get('/admin/klub', 'Admin::add_klub');
+$routes->get('/admin/jersey/create', 'jersey::create');
+$routes->post('admin/jersey/save', 'Jersey::save');

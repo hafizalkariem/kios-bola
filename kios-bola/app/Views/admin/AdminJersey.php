@@ -10,7 +10,9 @@
                     <h2 class="my-5">
                         Daftar Klub
                     </h2>
-                    <div class="btn btn-primary mb-3">Tambah Klub</div>
+                    <div class="d-flex justify-content-start my-3">
+                        <a href="jersey/create" class="btn btn-primary">Tambah Jersey</a>
+                    </div>
 
                     <table class="table table-hover">
 

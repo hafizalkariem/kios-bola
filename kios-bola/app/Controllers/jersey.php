@@ -42,4 +42,29 @@ class jersey extends BaseController
             return view('jersey/jersey', $data);
         }
     }
+    public function create()
+    {
+
+        $Klub = $this->KlubModel->findAll();
+        $data = [
+            'title' => 'create jersey',
+            'activePage' => 'jersey',
+            'Klub' => $Klub
+        ];
+        return view('jersey/create', $data);
+    }
+    public function save()
+    {
+
+        $this->JerseyModel->findAllWithClub('club_id');
+        $slug = url_title($this->request->getVar('judul', '-', true));
+        $this->JerseyModel->save([
+            'judul' => $this->request->getVar('judul'),
+            'slug' => $slug,
+            'klub' => $this->request->getVar('id_klub'),
+            'harga' => $this->request->getVar('harga'),
+            'ketersedi0aan' => $this->request->getVar('ketersediaan'),
+        ]);
+        return redirect()->to('jersey/AdminJersey');
+    }
 }

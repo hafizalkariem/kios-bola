@@ -8,6 +8,7 @@ class JerseyModel extends Model
 {
     protected $table = 'jersey';
     protected $useTimestamps = true;
+    protected $allowedfields = ['judul', 'harga', 'ketersediaan', 'sampul', 'apparel'];
 
     public function findAllWithClub()
     {

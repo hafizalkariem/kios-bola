@@ -50,24 +50,23 @@
         <div class="container">
 
             <div class="row counters">
-
                 <div class="col-lg-3 col-6 text-center">
                     <span data-purecounter-start="0" data-purecounter-end="100" data-purecounter-duration="1" class="purecounter"></span>
                     <p>Members</p>
                 </div>
 
                 <div class="col-lg-3 col-6 text-center">
-                    <span data-purecounter-start="0" data-purecounter-end="8" data-purecounter-duration="1" class="purecounter"></span>
+                    <span data-purecounter-start="0" data-purecounter-end="<?= $totalApparels; ?>" data-purecounter-duration="1" class="purecounter"></span>
                     <p>Apparels</p>
                 </div>
 
                 <div class="col-lg-3 col-6 text-center">
-                    <span data-purecounter-start="0" data-purecounter-end="50" data-purecounter-duration="1" class="purecounter"></span>
+                    <span data-purecounter-start="0" data-purecounter-end="<?= $totalJersey; ?>" data-purecounter-duration="1" class="purecounter"></span>
                     <p>Jerseys</p>
                 </div>
 
                 <div class="col-lg-3 col-6 text-center">
-                    <span data-purecounter-start="0" data-purecounter-end="6" data-purecounter-duration="1" class="purecounter"></span>
+                    <span data-purecounter-start="0" data-purecounter-end="<?= $totalklub; ?>" data-purecounter-duration="1" class="purecounter"></span>
                     <p>Clubs</p>
                 </div>
 

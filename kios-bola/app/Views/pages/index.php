@@ -58,71 +58,16 @@
         <p>Apparel Collaborators</p>
       </div>
       <!-- course -->
-
       <div class="row" data-aos="zoom-in" data-aos-delay="100">
-        <!-- first -->
-        <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-          <div class="course-item">
-            <img src="asset/img/nike.png" alt="..." />
-
+        <?php foreach ($Apparel as $a) : ?>
+          <!-- first -->
+          <div class="col d-flex align-items-stretch">
+            <div class="course-item col-lg-8">
+              <img src="asset/img/apparel/<?= $a['sampul']; ?>" alt="<?= $a['nama']; ?>" />
+            </div>
           </div>
-        </div>
-        <!-- end -->
-        <!-- first -->
-        <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-          <div class="course-item">
-            <img src="asset/img/adidas.png" alt="..." />
-
-          </div>
-        </div>
-        <!-- end -->
-        <!-- first -->
-        <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-          <div class="course-item">
-            <img src="asset/img/puma.png" alt="..." />
-
-          </div>
-        </div>
-        <!-- end -->
-        <!-- first -->
-        <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-          <div class="course-item">
-            <img src="asset/img/reebok.png" alt="..." />
-
-          </div>
-        </div>
-        <!-- end -->
-        <!-- first -->
-        <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-          <div class="course-item">
-            <img src="asset/img/Specs.png" alt="..." />
-
-          </div>
-        </div>
-        <!-- end -->
-        <!-- first -->
-        <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-          <div class="course-item">
-            <img src="asset/img/mills.png" alt="..." />
-
-          </div>
-        </div>
-        <!-- end -->
-        <!-- first -->
-        <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-          <div class="course-item">
-            <img src="asset/img/asics.png" alt="..." />
-
-          </div>
-        </div>
-        <!-- end -->
-        <!-- first -->
-        <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-          <div class="course-item">
-            <img src="asset/img/umbro.png" alt="..." />
-          </div>
-        </div>
-        <!-- end -->
+          <!-- end -->
+        <?php endforeach; ?>
       </div>
 
       <!-- end course -->

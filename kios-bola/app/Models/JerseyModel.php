@@ -8,7 +8,13 @@ class JerseyModel extends Model
 {
     protected $table = 'jersey';
     protected $useTimestamps = true;
-    protected $allowedfields = ['judul', 'harga', 'ketersediaan', 'sampul', 'apparel'];
+    protected $allowedFields = [
+        'sampul', 'apparel', 'judul',
+        'slug',
+        'ketersediaan',
+        'harga',
+        'id_klub'
+    ];
 
     public function findAllWithClub()
     {
@@ -22,6 +28,10 @@ class JerseyModel extends Model
             ->join('klub', 'klub.id_klub = jersey.id_klub')
             ->where('jersey.id_klub', $clubId)
             ->findAll();
+    }
+    public function getCount()
+    {
+        return $this->countAllResults();
     }
 }
     // public function getJerseys()

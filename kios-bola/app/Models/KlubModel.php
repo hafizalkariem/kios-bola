@@ -10,6 +10,11 @@ class KlubModel extends Model
     protected $id = 'id_klub';
     protected $useTimestamps = true;
 
+    public function getCount()
+    {
+        return $this->countAllResults();
+    }
+
     // Di dalam model Anda, misalnya JerseyModel.php
     // public function getJerseys()
     // {

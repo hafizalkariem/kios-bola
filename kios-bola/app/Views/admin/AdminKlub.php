@@ -10,9 +10,11 @@
             <div class="row">
                 <div class="col-12 my-3">
                     <h2 class="my-5">
-                        Daftar Jersey
+                        Daftar Klub
                     </h2>
-                    <div class="btn btn-primary mb-3">Tambah Klub</div>
+                    <div class="d-flex justify-content-start my-3">
+                        <a href="/klub/create" class="btn btn-outline-primary">Tambah Klub</a>
+                    </div>
 
                     <table class="table table-hover">
 

@@ -8,6 +8,12 @@ class ApparelModel extends Model
 {
     protected $table = 'apparel';
     protected $useTimestamps = true;
+    protected $allowedFields = ['nama', 'sampul' . 'slug'];
+
+    public function getCount()
+    {
+        return $this->countAllResults();
+    }
 
     // Di dalam model Anda, misalnya JerseyModel.php
     // public function getJerseys()

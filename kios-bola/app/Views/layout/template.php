@@ -83,7 +83,7 @@
 
         <div class="footer-top">
             <div class="container">
-                <div class="row">
+                <div class="row gap-3 d-flex justify-content-between">
 
                     <div class="col-lg-3 col-md-6 footer-contact">
                         <h3>KIOS BOLA</h3>
@@ -99,28 +99,69 @@
                         <ul>
                             <li><i class="bx bx-chevron-right"></i> <a href="<?= base_url('/') ?>">Home</a></li>
                             <li><i class="bx bx-chevron-right"></i> <a href="<?= base_url('/about') ?>">About us</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="<?= base_url('/contact') ?>">Contact</a></li>
                             <li><i class="bx bx-chevron-right"></i> <a href="<?= base_url('/shop') ?>">Shop</a></li>
 
                         </ul>
                     </div>
 
-                    <div class="col-lg-3 col-md-6 footer-links">
-                        <h4>Our Services</h4>
-                        <ul>
-                            <li><i class="bx bx-chevron-right"></i> <a href="<?= base_url('') ?>">Web Design</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="<?= base_url('') ?>">Web Development</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="<?= base_url('') ?>">Product Management</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="<?= base_url('') ?>">Marketing</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="<?= base_url('') ?>">Graphic Design</a></li>
-                        </ul>
+                    <div class="col-lg-2 col-md-6 footer-links">
+                        <h4>League Partner</h4>
+                        <div class="row row-cols-2" data-aos="zoom-in" data-aos-delay="100">
+                            <div class="col d-flex align-items-start justify-content-center m-0 p-0">
+                                <img src="<?= base_url('asset/img/league/premier-league.png'); ?>" alt="league-logo" class="league" />
+                            </div>
+                            <div class="col d-flex align-items-start justify-content-center m-0 p-0">
+                                <img src="<?= base_url('asset/img/league/bundes-liga.png'); ?>" alt="league-logo" class="league" />
+                            </div>
+                            <div class="col d-flex align-items-start justify-content-center m-0 p-0">
+                                <img src="<?= base_url('asset/img/league/la-liga.png'); ?>" alt="league-logo" class="league" />
+                            </div>
+                            <div class="col d-flex align-items-start justify-content-center m-0 p-0">
+                                <img src="<?= base_url('asset/img/league/league-1.png'); ?>" alt="league-logo" class="league" />
+                            </div>
+                            <div class="col d-flex align-items-start justify-content-center m-0 p-0">
+                                <img src="<?= base_url('asset/img/league/champions-league.png'); ?>" alt="league-logo" class="league" />
+                            </div>
+                            <div class="col d-flex align-items-start justify-content-center m-0 p-0">
+                                <img src="<?= base_url('asset/img/league/serie-a.png'); ?>" alt="league-logo" class="league" />
+                            </div>
+
+                            <!-- Tambahkan lebih banyak gambar di sini -->
+                        </div>
                     </div>
 
                     <div class="col-lg-4 col-md-6 footer-newsletter">
-                        <h4>Join Our Newsletter</h4>
-                        <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
-                        <form action="" method="post">
-                            <input type="email" name="email"><input type="submit" value="Subscribe">
-                        </form>
+                        <h4>Apparels</h4>
+                        <p>Join Our Apparels Collaborators</p>
+                        <div class="row row-cols-4" data-aos="zoom-in" data-aos-delay="100">
+                            <div class="col d-flex align-items-start justify-content-center m-0 p-0">
+                                <img src="<?= base_url('asset/img/apparel/adidas.png'); ?>" alt="league-logo" class="league" />
+                            </div>
+                            <div class="col d-flex align-items-start justify-content-center m-0 p-0">
+                                <img src="<?= base_url('asset/img/apparel/asics.png'); ?>" alt="league-logo" class="league" />
+                            </div>
+                            <div class="col d-flex align-items-start justify-content-center m-0 p-0">
+                                <img src="<?= base_url('asset/img/apparel/mills.png'); ?>" alt="league-logo" class="league" />
+                            </div>
+                            <div class="col d-flex align-items-start justify-content-center m-0 p-0">
+                                <img src="<?= base_url('asset/img/apparel/nike.png'); ?>" alt="league-logo" class="league" />
+                            </div>
+                            <div class="col d-flex align-items-start justify-content-center m-0 p-0">
+                                <img src="<?= base_url('asset/img/apparel/puma.png'); ?>" alt="league-logo" class="league" />
+                            </div>
+                            <div class="col d-flex align-items-start justify-content-center m-0 p-0">
+                                <img src="<?= base_url('asset/img/apparel/reebok.png'); ?>" alt="league-logo" class="league" />
+                            </div>
+                            <div class="col d-flex align-items-start justify-content-center m-0 p-0">
+                                <img src="<?= base_url('asset/img/apparel/specs.png'); ?>" alt="league-logo" class="league" />
+                            </div>
+                            <div class="col d-flex align-items-start justify-content-center m-0 p-0">
+                                <img src="<?= base_url('asset/img/apparel/umbro.png'); ?>" alt="league-logo" class="league" />
+                            </div>
+
+                            <!-- Tambahkan lebih banyak gambar di sini -->
+                        </div>
                     </div>
 
                 </div>

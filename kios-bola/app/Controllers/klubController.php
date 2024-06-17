@@ -8,7 +8,7 @@ use App\Models\KlubModel;
 
 class klubController extends BaseController
 {
-    protected $helpers = ['form'];
+    protected $helpers = ['form', 'session'];
     protected $JerseyModel;
     protected $KlubModel;
     protected $ApparelModel;
@@ -35,6 +35,7 @@ class klubController extends BaseController
     }
     public function save()
     {
+
         $validate = $this->validate([
             'nama' => [
                 'rules' => 'required|is_unique[klub.nama]',
@@ -61,7 +62,6 @@ class klubController extends BaseController
         if (!$validate) {
 
             $validation = \config\Services::validation();
-
             return redirect()->back()->withInput()->with('validation', $validation);
         }
 
@@ -77,7 +77,7 @@ class klubController extends BaseController
 
         ]);
 
-        session()->setFlashdata('pesan' . "data berhasil ditambahkan");
+        session()->setFlashdata('pesan', "data berhasil ditambahkan");
         return redirect()->to('/admin/klub');
     }
 }

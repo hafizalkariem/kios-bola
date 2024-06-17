@@ -15,9 +15,10 @@
                     <div class="d-flex justify-content-start my-3">
                         <a href="/klub/create" class="btn btn-outline-primary">Tambah Klub</a>
                     </div>
+
                     <?php if (session()->getFlashdata('pesan')) : ?>
                         <div class="alert alert-success" role="alert">
-                            Data berhasil Ditambahkan
+                            <?= session()->getFlashdata('pesan'); ?>
                         </div>
                     <?php endif; ?>
 

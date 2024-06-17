@@ -16,14 +16,20 @@ use PhpParser\Node\Stmt\Echo_;
                         <h2><strong>Form Tambah Klub</strong></h2>
                     </div>
                     <div class="row">
-                        <?= validation_list_errors() ?>
+                        <?php $session = \Config\Services::session(); ?>
+                        <?php if (isset($validation)) : ?>
+                            <div class="text-danger">
+                                <?= $validation->listErrors() ?>
+                            </div>
+                        <?php endif; ?>
+
                         <form action="/klub/save" method="post" enctype="multipart/form-data">
                             <?= csrf_field(); ?>
                             <div class="row mb-3">
                                 <!-- judul -->
                                 <label for="nama" class="col-sm-2 col-form-label">Nama</label>
                                 <div class="col-sm-10 mb-3">
-                                    <input type="text" class="form-control <?= ($validation->hasError('nama')) ? 'is-invalid' : ''; ?>" id="nama" name="nama" value="<?= old('nama') ?>" autofocus>
+                                    <input type="text" class="form-control <?= ($validation->hasError('nama')) ? ' is-invalid' : ''; ?>" id="nama" name="nama" value="<?= old('nama') ?>" autofocus>
                                 </div>
                                 <div class="invalid-feedback">
                                     <?= $validation->getError('nama'); ?>

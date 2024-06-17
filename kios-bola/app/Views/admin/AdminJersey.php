@@ -43,8 +43,8 @@
                                     <th scope="row"><?= $i++; ?></th>
                                     <td><img src="/asset/img/jersey/<?= $j['sampul']; ?>" alt="<?= $j['judul']; ?>" class="sampul"></td>
                                     <td><img src="/asset/img/apparel/<?= $j['apparel']; ?>" alt="<?= $j['judul']; ?>" class="sampul"></td>
-                                    <td><?= $j['id']; ?></td>
-                                    <td><?= $j['id_klub']; ?></td>
+                                    <td><strong><?= $j['id']; ?></strong></td>
+                                    <td><strong><?= $j['id_klub']; ?></strong></td>
                                     <td><?= $j['judul']; ?></td>
                                     <td><?= $j['slug']; ?></td>
                                     <td><?= $j['ketersediaan']; ?></td>

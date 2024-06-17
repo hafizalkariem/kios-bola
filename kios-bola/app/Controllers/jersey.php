@@ -104,7 +104,8 @@ class Jersey extends BaseController
 
         if (!$validate) {
 
-            return redirect()->back()->withInput()->with('validation', $this->validator);
+            $validation = \config\Services::validation();
+            return redirect()->to('admin/jersey/create')->withInput()->with('validation', $validation);
         }
 
         $sampul = $this->request->getFile('sampul');
@@ -134,7 +135,11 @@ class Jersey extends BaseController
 
     public function delete($id)
     {
+        $Jersey = $this->JerseyModel->find($id);
+
+        unlink('asset/img/jersey/' . $Jersey['sampul']);
         $this->JerseyModel->delete($id);
+        session()->setFlashdata('pesan', 'Data berhasil dihapus.');
         return redirect()->to('/admin/jersey');
     }
 }

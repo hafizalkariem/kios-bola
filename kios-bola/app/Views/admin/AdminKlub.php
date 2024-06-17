@@ -15,6 +15,11 @@
                     <div class="d-flex justify-content-start my-3">
                         <a href="/klub/create" class="btn btn-outline-primary">Tambah Klub</a>
                     </div>
+                    <?php if (session()->getFlashdata('pesan')) : ?>
+                        <div class="alert alert-success" role="alert">
+                            Data berhasil Ditambahkan
+                        </div>
+                    <?php endif; ?>
 
                     <table class="table table-hover">
 
@@ -39,8 +44,8 @@
                                     <td>
                                         <div class="row">
                                             <div class="d-flex justify-content-center gap-3">
-                                                <a href="" class="btn btn-danger">delete</a>
                                                 <a href="" class="btn btn-success">update</a>
+                                                <a href="" class="btn btn-danger">delete</a>
                                             </div>
                                         </div>
                                     </td>

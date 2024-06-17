@@ -13,14 +13,13 @@
                     </div>
                     <div class="row">
                         <?php $validation = \Config\Services::validation(); ?>
-
                         <form action="<?= base_url('admin/jersey/save') ?>" method="post" enctype="multipart/form-data">
                             <?= csrf_field(); ?>
                             <div class="row mb-3">
                                 <!-- judul -->
                                 <label for="judul" class="col-sm-2 col-form-label">Judul</label>
                                 <div class="col-sm-10 mb-3">
-                                    <input type="text" class="form-control <?= $validation->hasError('judul') ? 'is-invalid' : ''; ?>" id="judul" name="judul" value="<?= old('judul'); ?>" autofocus>
+                                    <input type="text" class="form-control <?= ($validation->hasError('judul')) ? 'is-invalid' : ''; ?>" id="judul" name="judul" value="<?= old('judul'); ?>" autofocus>
                                     <div class="invalid-feedback">
                                         <?= $validation->getError('judul'); ?>
                                     </div>
@@ -31,7 +30,7 @@
                             <div class="row mb-3">
                                 <label for="id_klub" class="col-sm-2 col-form-label">Klub</label>
                                 <div class="col-sm-10 mb-3">
-                                    <select class="form-select <?= $validation->hasError('id_klub') ? 'is-invalid' : ''; ?>" id="id_klub" name="id_klub">
+                                    <select class="form-select <?= ($validation->hasError('id_klub')) ? 'is-invalid' : ''; ?>" id="id_klub" name="id_klub">
                                         <option value="" disabled selected>Pilih klub</option>
                                         <?php foreach ($Klub as $k) : ?>
                                             <option value="<?= $k['id_klub']; ?>" <?= old('id_klub') == $k['id_klub'] ? 'selected' : ''; ?>><?= $k['nama']; ?></option>

@@ -15,7 +15,7 @@
                     </div>
                     <?php if (session()->getFlashdata('pesan')) : ?>
                         <div class="alert alert-success" role="alert">
-                            <?php session()->getFlashdata('pesan'); ?>
+                            <?= session()->getFlashdata('pesan'); ?>
                         </div>
                     <?php endif; ?>
 
@@ -52,9 +52,16 @@
                                     <td><?= $j['created_at']; ?></td>
                                     <td>
                                         <div class="row">
-                                            <div class="d-flex justify-content-center gap-3">
-                                                <a href="jersey/delete/<?= $j['id']; ?>"><i class="fa-solid fa-trash fa-xl" style="color: #ff0000;"></i></a>
+                                            <div class="d-flex justify-content-center gap-3 align-items-center">
                                                 <a href=""><i class="fa-solid fa-pen-to-square fa-xl" style="color: #358754;"></i></a>
+
+                                                <form action="/admin/jersey/<?= $j['id']; ?>" method="post" class="d-inline">
+                                                    <?= csrf_field(); ?>
+                                                    <input type="hidden" name="_method" value="DELETE">
+                                                    <button type="submit" class="btn" onclick="return confirm('apakah anda yakin ingin menghapusnya ?');"><i class="fa-solid fa-trash fa-xl" style="color: #ff0000;"></i></button>
+                                                </form>
+
+
                                             </div>
                                         </div>
                                     </td>

@@ -16,6 +16,15 @@ class JerseyModel extends Model
         'id_klub'
     ];
 
+
+    public function getJersey($slug = false)
+    {
+        if ($slug === false) {
+            return $this->findAll();
+        }
+
+        return $this->where(['slug' => $slug])->first();
+    }
     public function findAllWithClub()
     {
         return $this->select('jersey.*, klub.nama AS club_name, klub.logo AS club_logo')

@@ -45,6 +45,7 @@ class Jersey extends BaseController
     }
 
     public function create()
+
     {
         $Klub = $this->KlubModel->findAll();
         $Apparel = $this->ApparelModel->findAll();
@@ -140,6 +141,104 @@ class Jersey extends BaseController
         unlink('asset/img/jersey/' . $Jersey['sampul']);
         $this->JerseyModel->delete($id);
         session()->setFlashdata('pesan', 'Data berhasil dihapus.');
+        return redirect()->to('/admin/jersey');
+    }
+    public function edit($slug)
+    {
+        $jersey = $this->JerseyModel->getJersey($slug);
+        $Klub = $this->KlubModel->findAll();
+        $Apparel = $this->ApparelModel->findAll();
+        session();
+        $data = [
+            'title' => 'Create Jersey',
+            'activePage' => 'jersey',
+            'Klub' => $Klub,
+            'Apparel' => $Apparel,
+            'validation' => \Config\Services::validation(),
+            'jersey' => $jersey
+        ];
+        return view('jersey/edit', $data);
+    }
+    public function update($id)
+    {
+
+
+        $jerseyLama = $this->JerseyModel->getJersey($this->request->getVar('slug'));
+        if ($jerseyLama['judul'] == $this->request->getVar('judul')) {
+            $rule_judul = 'required';
+        } else {
+            $rule_judul = 'required|is_unique[jersey.judul]';
+        }
+
+        $validate = $this->validate([
+            'sampul' => [
+                'rules' => 'uploaded[sampul]|max_size[sampul,2048]|is_image[sampul]|mime_in[sampul,image/jpg,image/jpeg,image/png]',
+                'errors' => [
+                    'uploaded' => '{field} harus diisi',
+                    'max_size' => 'ukuran {field} terlalu besar.',
+                    'is_image' => '{field} harus berupa gambar.',
+                    'mime_in' => '{field} harus berupa gambar yang valid.'
+                ]
+            ],
+            'judul' => [
+                'rules' => $rule_judul,
+                'errors' => [
+                    'required' => '{field} harus diisi.',
+                    'is_unique' => '{field} sudah terdaftar.'
+                ]
+            ],
+            'harga' => [
+                'label' => 'Harga',
+                'rules' => 'required|numeric|greater_than_equal_to[0]',
+                'errors' => [
+                    'required' => '{field} harus diisi.',
+                    'numeric' => '{field} harus berisi angka.',
+                    'greater_than_equal_to' => '{field} harus bernilai positif atau nol.'
+                ]
+            ],
+            'ketersediaan' => [
+                'rules' => 'required|numeric',
+                'errors' => [
+                    'required' => '{field} harus diisi.',
+                    'numeric' => '{field} harus berisi angka.'
+                ]
+            ],
+            'id_klub' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} harus diisi.'
+                ]
+            ]
+        ]);
+
+        if (!$validate) {
+
+            $validation = \config\Services::validation();
+            return redirect()->to('/jersey/edit/' . $this->request->getVar('slug'))->withInput()->with('validation', $validation);
+        }
+        $sampul = $this->request->getFile('sampul');
+        $sampulName = $sampul->getRandomName();
+        $sampul->move('asset/img/jersey', $sampulName);
+
+        $judul = $this->request->getPost('judul');
+        $id_klub = $this->request->getPost('id_klub');
+        $apparel_sampul = $this->request->getPost('apparel_sampul');
+        $harga = $this->request->getPost('harga');
+        $ketersediaan = $this->request->getPost('ketersediaan');
+        $slug = url_title($this->request->getVar('judul'), '-', true);
+
+        $this->JerseyModel->save([
+            'id' => $id,
+            'sampul' => $sampulName,
+            'apparel' => $apparel_sampul,
+            'judul' => $judul,
+            'slug' => $slug,
+            'ketersediaan' => $ketersediaan,
+            'harga' => $harga,
+            'id_klub' => $id_klub
+        ]);
+
+        session()->setFlashdata('pesan', 'Data berhasil diubah.');
         return redirect()->to('/admin/jersey');
     }
 }

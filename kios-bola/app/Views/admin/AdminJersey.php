@@ -53,7 +53,7 @@
                                     <td>
                                         <div class="row">
                                             <div class="d-flex justify-content-center gap-3 align-items-center">
-                                                <a href=""><i class="fa-solid fa-pen-to-square fa-xl" style="color: #358754;"></i></a>
+                                                <a href="/jersey/edit/<?= $j['slug']; ?>"><i class="fa-solid fa-pen-to-square fa-xl" style="color: #358754;"></i></a>
 
                                                 <form action="/admin/jersey/<?= $j['id']; ?>" method="post" class="d-inline">
                                                     <?= csrf_field(); ?>

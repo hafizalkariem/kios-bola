@@ -78,6 +78,7 @@ class klubController extends BaseController
         ]);
 
         session()->setFlashdata('pesan', "data berhasil ditambahkan");
+
         return redirect()->to('/admin/klub');
     }
 }

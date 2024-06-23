@@ -20,11 +20,17 @@ class Admin extends BaseController
     }
     public function index()
     { {
-            $Jersey = $this->JerseyModel->findAll();
+            // $Jersey = $this->JerseyModel->findAll();
+
+            $current_page = $this->request->getVar('page_jersey') ? $this->request->getVar('page_jersey') : 1;
+            d($this->request->getVar('keyword'));
+
             $data = [
                 'title' => 'Admin | Jersey',
                 'activePage' => 'Jersey',
-                'Jersey' => $Jersey
+                'Jersey' => $this->JerseyModel->paginate(5, 'jersey'),
+                'pager' => $this->JerseyModel->pager,
+                'current_page' => $current_page
 
             ];
 

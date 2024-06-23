@@ -42,9 +42,9 @@
 
     <!-- ======= Header ======= -->
     <header id="header" class="fixed-top">
-        <div class="container d-flex align-items-center justify-content-around">
+        <div class="container d-flex align-items-center justify-content-between">
 
-            <h1 class="logo me-auto"><a href="<?= base_url('/'); ?>"> KIOS BOLA</a></h1>
+            <h1 class="logo me-3"><a href="<?= base_url('/'); ?>"> KIOS BOLA</a></h1>
             <!-- Uncomment below if you prefer to use an image logo -->
             <!-- <a href=" index.html" class="logo me-auto"><img src="<?= base_url('assets/img/logo.png'); ?>" alt="" class="img-fluid"></a>-->
 
@@ -54,25 +54,43 @@
                     <li class="<?= $activePage == 'about' ? 'active' : ''; ?>"><a href="<?= base_url('/about'); ?>">About</a></li>
                     <li class="<?= $activePage == 'contact' ? 'active' : ''; ?>"><a href="<?= base_url('/contact'); ?>">Contact</a></li>
                     <li class="<?= $activePage == 'pricing' ? 'active' : ''; ?>"><a href="<?= base_url('/shop'); ?>">Shop</a></li>
-                    <li class="dropdown <?= ($activePage == 'AdminJersey' || $activePage == 'AdminKlub' || $activePage == 'AdminApparel') ? 'active' : ''; ?>"><a href="#"><span>Admin</span> <i class="bi bi-chevron-down"></i></a>
-                        <ul>
-                            <li class="<?= $activePage == 'AdminJersey' ? 'active' : ''; ?>"><a href="<?= base_url('/admin/jersey'); ?>">Jersey</a></li>
-                            <li class="<?= $activePage == 'AdminKlub' ? 'active' : ''; ?>"><a href="<?= base_url('/admin/klub'); ?>">Klub</a></li>
-                            <li class="<?= $activePage == 'AdminApparel' ? 'active' : ''; ?>"><a href="<?= base_url('/admin/apparel'); ?>">Apparel</a></li>
-                        </ul>
-                    </li>
+                    <?php if (in_groups('admin')) : ?>
+                        <li class="dropdown <?= ($activePage == 'AdminJersey' || $activePage == 'AdminKlub' || $activePage == 'AdminApparel') ? 'active' : ''; ?>"><a href="#"><span>Admin</span> <i class="bi bi-chevron-down"></i></a>
+                            <ul>
+                                <li class="<?= $activePage == 'AdminJersey' ? 'active' : ''; ?>"><a href="<?= base_url('/admin/jersey'); ?>">Jersey</a></li>
+                                <li class="<?= $activePage == 'AdminKlub' ? 'active' : ''; ?>"><a href="<?= base_url('/admin/klub'); ?>">Klub</a></li>
+                                <li class="<?= $activePage == 'AdminApparel' ? 'active' : ''; ?>"><a href="<?= base_url('/admin/apparel'); ?>">Apparel</a></li>
+                            </ul>
+                        </li>
+                    <?php endif; ?>
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav><!-- .navbar -->
             <!-- search -->
-            <form class="d-flex mx-4" role="search">
-                <input class="form-control me-2 rounded-pill" type="search" placeholder="Search" aria-label="Search">
 
-                <button class="btn btn-outline-success rounded-pill bg-danger text-white" type="submit">Search</button>
-            </form>
             <!-- end search -->
 
-            <a href="<?= base_url('/courses'); ?>" class="get-started-btn">Get Started</a>
+            <?php if (logged_in()) : ?>
+                <div class="d-flex justify-content-center gap-3 align-items-center">
+                    <a href="<?= base_url('logout'); ?>" class="">
+                        <div class="col gap-2">
+                            <i class="fa-solid fa-right-from-bracket fa-xl" style="color: #cf1006;"></i>
+                            <p class="d-inline gap-2" style="color: #cf1006;"> logout </p>
+                        </div>
+
+                    </a>
+                </div>
+            <?php else : ?>
+                <div class="d-flex justify-content-center gap-3 align-items-center">
+                    <a href="<?= base_url('login'); ?>" class="">
+                        <div class="col gap-2">
+                            <i class="fa-solid fa-right-to-bracket fa-xl" style="color: #cf1006;"></i>
+                            <p class="d-inline gap-2" style="color: #cf1006;"> login </p>
+                        </div>
+
+                    </a>
+                </div>
+            <?php endif; ?>
 
         </div>
     </header><!-- End Header -->
@@ -156,9 +174,7 @@
                             <div class="col d-flex align-items-start justify-content-center m-0 p-0">
                                 <img src="<?= base_url('asset/img/apparel/specs.png'); ?>" alt="league-logo" class="league" />
                             </div>
-                            <div class="col d-flex align-items-start justify-content-center m-0 p-0">
-                                <img src="<?= base_url('asset/img/apparel/umbro.png'); ?>" alt="league-logo" class="league" />
-                            </div>
+
 
                             <!-- Tambahkan lebih banyak gambar di sini -->
                         </div>
@@ -204,6 +220,9 @@
 
     <!-- Template Main JS File -->
     <script src="<?= base_url('asset/js/main.js'); ?>"></script>
+    <script>
+        feather.replace();
+    </script>
 
 </body>
 

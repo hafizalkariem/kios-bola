@@ -30,7 +30,7 @@
                             <div class="row mb-3">
                                 <label for="id_klub" class="col-sm-2 col-form-label">Klub</label>
                                 <div class="col-sm-10 mb-3">
-                                    <select class="form-select <?= ($validation->hasError('id_klub')) ? 'is-invalid' : ''; ?>" id="id_klub" name="id_klub">
+                                    <select class="form-select custom-select <?= ($validation->hasError('id_klub')) ? 'is-invalid' : ''; ?>" id="id_klub" name="id_klub">
                                         <option value="" disabled selected>Pilih klub</option>
                                         <?php foreach ($Klub as $k) : ?>
                                             <option value="<?= $k['id_klub']; ?>" <?= old('id_klub') == $k['id_klub'] ? 'selected' : ''; ?>><?= $k['nama']; ?></option>
@@ -46,7 +46,7 @@
                             <div class="row mb-3">
                                 <label for="apparel_sampul" class="col-sm-2 col-form-label">Apparel</label>
                                 <div class="col-sm-10 mb-3">
-                                    <select class="form-select <?= $validation->hasError('apparel_sampul') ? 'is-invalid' : ''; ?>" id="apparel_sampul" name="apparel_sampul">
+                                    <select class="form-select custom-select <?= $validation->hasError('apparel_sampul') ? 'is-invalid' : ''; ?>" id="apparel_sampul" name="apparel_sampul">
                                         <option value="" disabled selected>Pilih apparel</option>
                                         <?php foreach ($Apparel as $a) : ?>
                                             <option value="<?= $a['sampul']; ?>" <?= old('apparel_sampul') == $a['sampul'] ? 'selected' : ''; ?>><?= $a['nama']; ?></option>

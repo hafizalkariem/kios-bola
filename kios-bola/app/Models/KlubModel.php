@@ -7,8 +7,9 @@ use CodeIgniter\Model;
 class KlubModel extends Model
 {
     protected $table = 'klub';
+    protected $primaryKey = 'id_klub';
     protected $id = 'id_klub';
-    protected $allowedFields = ['nama', 'logo'];
+    protected $allowedFields = ['nama', 'logo', 'slug'];
 
     public function getCount()
     {
@@ -29,12 +30,24 @@ class KlubModel extends Model
             ]
         ];
     }
+    public function getKlub($slug = false)
+    {
+        if ($slug === false) {
+            return $this->findAll();
+        }
+
+        return $this->where(['slug' => $slug])->first();
+    }
+    public function search($keyword)
+    {
+        return $this->table('klub')->like('nama', $keyword)->orLike('logo', $keyword);
+    }
     // Di dalam model Anda, misalnya JerseyModel.php
     // public function getJerseys()
     // {
     //     $builder = $this->db->table('jersey');
     //     $builder->select('jersey.*, klub.nama as nama_klub');
-    //     $builder->join('klub', 'klub.id = jersey.id_klub');
+    //     $builder->join('klub', 'klub.id_klub = jersey.id_klub');
     //     $query = $builder->get();
     //     return $query->getResultArray();
     // }

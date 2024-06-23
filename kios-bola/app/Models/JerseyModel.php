@@ -27,13 +27,13 @@ class JerseyModel extends Model
     }
     public function findAllWithClub()
     {
-        return $this->select('jersey.*, klub.nama AS club_name, klub.logo AS club_logo')
+        return $this->select('jersey.*, klub.nama AS club_name, klub.logo AS club_logo, klub.nama AS club_nama')
             ->join('klub', 'klub.id_klub = jersey.id_klub')
             ->findAll();
     }
     public function findByClub($clubId)
     {
-        return $this->select('jersey.*, klub.nama AS club_name, klub.logo AS club_logo')
+        return $this->select('jersey.*, klub.nama AS club_name, klub.logo AS club_logo , klub.nama AS club_nama')
             ->join('klub', 'klub.id_klub = jersey.id_klub')
             ->where('jersey.id_klub', $clubId)
             ->findAll();

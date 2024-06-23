@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Models\KlubModel;
 use App\Models\JerseyModel;
 use App\Models\ApparelModel;
+use App\Config\Services;
 
 class page extends BaseController
 {
@@ -55,7 +56,12 @@ class page extends BaseController
     }
     public function pricing()
     {
-        $Klub = $this->KlubModel->findAll();
+        $keyword = $this->request->getVar('keyword');
+        if ($keyword) {
+            $Klub = $this->KlubModel->search($keyword);
+        } else {
+            $Klub = $this->KlubModel->findAll();
+        }
 
         $data = [
             'title' => 'Daftar Klub | Kios Bola',

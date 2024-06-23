@@ -23,7 +23,7 @@ use PhpParser\Node\Stmt\Echo_;
                             </div>
                         <?php endif; ?>
 
-                        <form action="/klub/save" method="post" enctype="multipart/form-data">
+                        <form action="/admin/klub/save" method="post" enctype="multipart/form-data">
                             <?= csrf_field(); ?>
                             <div class="row mb-3">
                                 <!-- judul -->

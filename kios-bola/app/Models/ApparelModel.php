@@ -14,7 +14,14 @@ class ApparelModel extends Model
     {
         return $this->countAllResults();
     }
+    public function getApparel($slug = false)
+    {
+        if ($slug === false) {
+            return $this->findAll();
+        }
 
+        return $this->where(['slug' => $slug])->first();
+    }
     // Di dalam model Anda, misalnya JerseyModel.php
     // public function getJerseys()
     // {

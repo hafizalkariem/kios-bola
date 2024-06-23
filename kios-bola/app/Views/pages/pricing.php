@@ -18,7 +18,7 @@
           <div class="col-lg-3 col-md-6 mb-3">
             <div class="box">
               <h3><?= $k['nama']; ?></h3>
-              <img src="asset/img/klub/<?= $k['logo']; ?>" alt="<?= $k['nama']; ?>" class="klub">
+              <img src="asset/img/klub/<?= $k['logo']; ?>" alt="<?= $k['nama']; ?>" class="klub img-fluid" style="max-width:100%; max-height:auto;">
               <div class="btn-wrap">
                 <a href="<?= base_url('/jersey?club_id=' . $k['id_klub']) ?>" class="btn-buy">lihat jersey</a>
               </div>

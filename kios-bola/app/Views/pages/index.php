@@ -50,27 +50,41 @@
   <!-- ======= Counts Section ======= -->
   <section id="counts" class="counts section-bg">
 
-
-
-    <div class="container">
-      <div class="section-title">
-        <h2>Kolaborasi</h2>
-        <p>Apparel Collaborators</p>
-      </div>
-      <!-- course -->
-      <div class="row" data-aos="zoom-in" data-aos-delay="100">
-        <?php foreach ($Apparel as $a) : ?>
-          <!-- first -->
-          <div class="col d-flex align-items-stretch">
-            <div class="course-item col-lg-8">
-              <img src="asset/img/apparel/<?= $a['sampul']; ?>" alt="<?= $a['nama']; ?>" />
-            </div>
+    <!--<div class="row" data-aos="zoom-in" data-aos-delay="100">
+      
+      <div class="col d-flex align-items-stretch">
+        <div class="course-item col-lg-8">
           </div>
-          <!-- end -->
-        <?php endforeach; ?>
-      </div>
+        </div>
+        
+      </div>-->
+    <section id="testimonials" class="testimonials">
+      <div class="container" data-aos="fade-up">
 
-      <!-- end course -->
+        <div class="container">
+          <div class="section-title">
+            <h2>Kolaborasi</h2>
+            <p>Apparel Collaborators</p>
+          </div>
+
+          <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
+            <div class="swiper-wrapper">
+              <?php foreach ($Apparel as $a) : ?>
+                <div class="swiper-slide">
+                  <!-- <div class="testimonial-wrap">
+                    <div class="testimonial-item"> -->
+                  <img src="asset/img/apparel/<?= $a['sampul']; ?>" alt="<?= $a['nama']; ?>" class="rounded mx-auto d-block apparel-img" />
+                  <!-- </div>
+                  </div> -->
+                </div><!-- End testimonial item -->
+              <?php endforeach; ?>
+            </div>
+            <div class="swiper-pagination"></div>
+          </div>
+
+        </div>
+    </section>
+
 
     </div>
   </section><!-- End Counts Section -->

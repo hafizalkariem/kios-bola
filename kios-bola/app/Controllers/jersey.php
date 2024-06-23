@@ -30,11 +30,13 @@ class Jersey extends BaseController
                 'title' => 'Jersey | Kios Bola',
                 'activePage' => 'pricing',
                 'Jerseys' => $Jerseys,
+                'klub' => $this->KlubModel->findAll()
             ];
             return view('jersey/jersey', $data);
         } else {
             $JerseyModel = new JerseyModel();
             $Jerseys = $JerseyModel->findAllWithClub();
+
             $data = [
                 'title' => 'Jersey | Kios Bola',
                 'activePage' => 'pricing',
@@ -146,17 +148,28 @@ class Jersey extends BaseController
     public function edit($slug)
     {
         $jersey = $this->JerseyModel->getJersey($slug);
+
+        // Check if jersey data exists
+        if (!$jersey) {
+            // Handle if jersey is not found, e.g., redirect or show error message
+            return redirect()->to('admin/jersey')->with('error', 'Jersey not found.');
+        }
+
+        // Retrieve klub and apparel data
         $Klub = $this->KlubModel->findAll();
         $Apparel = $this->ApparelModel->findAll();
-        session();
+
+        // Prepare data to pass to view
         $data = [
-            'title' => 'Create Jersey',
+            'title' => 'Edit Jersey',
             'activePage' => 'jersey',
             'Klub' => $Klub,
             'Apparel' => $Apparel,
             'validation' => \Config\Services::validation(),
-            'jersey' => $jersey
+            'jersey' => $jersey, // Pass jersey data to view
         ];
+
+        // Load view with data
         return view('jersey/edit', $data);
     }
     public function update($id)

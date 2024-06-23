@@ -13,7 +13,7 @@
                         Daftar Klub
                     </h2>
                     <div class="d-flex justify-content-start my-3">
-                        <a href="/klub/create" class="btn btn-outline-primary">Tambah Klub</a>
+                        <a href="/admin/klub/create" class="btn btn-outline-primary">Tambah Klub</a>
                     </div>
 
                     <?php if (session()->getFlashdata('pesan')) : ?>
@@ -30,6 +30,7 @@
                                 <th scope="col">Logo</th>
                                 <th scope="col">ID</th>
                                 <th scope="col">Nama</th>
+                                <th scope="col">Slug</th>
                                 <th scope="col">opsi</th>
                             </tr>
                         </thead>
@@ -42,11 +43,19 @@
                                     <td><img src="/asset/img/klub/<?= $k['logo']; ?>" alt="" class="sampul"></td>
                                     <td><?= $k['id_klub']; ?></td>
                                     <td><?= $k['nama']; ?></td>
+                                    <td><?= $k['slug']; ?></td>
                                     <td>
                                         <div class="row">
-                                            <div class="d-flex justify-content-center gap-3">
-                                                <a href="" class="btn btn-success">update</a>
-                                                <a href="" class="btn btn-danger">delete</a>
+                                            <div class="d-flex justify-content-center gap-3 align-items-center">
+                                                <a href="/admin/klub/edit/<?= $k['slug']; ?>"><i class="fa-solid fa-pen-to-square fa-xl" style="color: #358754;"></i></a>
+
+                                                <form action="/admin/klub/<?= $k['id_klub']; ?>" method="post" class="d-inline">
+                                                    <?= csrf_field(); ?>
+                                                    <input type="hidden" name="_method" value="DELETE">
+                                                    <button type="submit" class="btn" onclick="return confirm('apakah anda yakin ingin menghapusnya ?');"><i class="fa-solid fa-trash fa-xl" style="color: #ff0000;"></i></button>
+                                                </form>
+
+
                                             </div>
                                         </div>
                                     </td>

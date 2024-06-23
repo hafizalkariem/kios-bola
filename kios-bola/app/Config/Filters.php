@@ -15,27 +15,30 @@ class Filters extends BaseConfig
      * Configures aliases for Filter classes to
      * make reading things nicer and simpler.
      *
-     * @var array<string, class-string|list<class-string>> [filter_name => classname]
+     * @var array class-string|list<class-string>> [filter_name => classname]
      *                                                     or [filter_name => [classname1, classname2, ...]]
      */
-    public array $aliases = [
+    public $aliases = [
         'csrf'          => CSRF::class,
         'toolbar'       => DebugToolbar::class,
         'honeypot'      => Honeypot::class,
         'invalidchars'  => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
+        'login'      => \Myth\Auth\Filters\LoginFilter::class,
+        'role'       => \Myth\Auth\Filters\RoleFilter::class,
+        'permission' => \Myth\Auth\Filters\PermissionFilter::class,
     ];
 
     /**
      * List of filter aliases that are always
      * applied before and after every request.
      *
-     * @var array<string, array<string, array<string, string>>>|array<string, list<string>>
+     * @var array array<string, array<string, string>>>|array<string, list<string>>
      */
-    public array $globals = [
+    public $globals = [
         'before' => [
-            // 'honeypot',
-            'csrf',
+            'honeypot',
+            // 'csrf',
             // 'invalidchars',
         ],
         'after' => [
@@ -56,9 +59,9 @@ class Filters extends BaseConfig
      * permits any HTTP method to access a controller. Accessing the controller
      * with a method you don't expect could bypass the filter.
      *
-     * @var array<string, list<string>>
+     * @var array list<string>>
      */
-    public array $methods = [];
+    public $methods = [];
 
     /**
      * List of filter aliases that should run on any
@@ -69,5 +72,7 @@ class Filters extends BaseConfig
      *
      * @var array<string, array<string, list<string>>>
      */
-    public array $filters = [];
+    public $filters = [
+        'login' => ['before' => ['admin/*', 'apparelController/*', 'jersey/*', 'klubController/*', '/shop']]
+    ];
 }

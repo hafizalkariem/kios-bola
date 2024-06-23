@@ -3,8 +3,10 @@
 <main id="main">
     <!-- ======= Breadcrumbs ======= -->
     <div class="breadcrumbs" data-aos="fade-in">
-        <div class="container">
-            <h2 class="">Jersey Tersedia</h2>
+        <div class="container d-flex justify-content-center gap-3 mt-3">
+            <?php foreach ($Jerseys as $j) : ?>
+                <h2 class=""><?= $j['club_nama']; ?></h2>
+            <?php endforeach; ?>
         </div>
     </div><!-- End Breadcrumbs -->
 

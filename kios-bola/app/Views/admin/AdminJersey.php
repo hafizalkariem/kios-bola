@@ -6,10 +6,22 @@
     <section id="admin" class="admin">
         <div class="container" data-aos="fade-up">
             <div class="row">
-                <div class="col-12 my-3">
+                <div class="col-6">
+
                     <h2 class="my-5">
                         Daftar Jersey
                     </h2>
+                    <form action="" method="POST">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Masukan Keyword" aria-describedby="button-addon2" name="keyword">
+                            <button class="btn btn-outline-secondary" type="submit" name="submit">Search</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 my-3">
                     <div class="d-flex justify-content-start my-3">
                         <a href="jersey/create" class="btn btn-outline-primary">Tambah Jersey</a>
                     </div>
@@ -37,7 +49,7 @@
                             </tr>
                         </thead>
                         <tbody class="text-center">
-                            <?php $i = 1;
+                            <?php $i = 1 + (5 * ($current_page - 1));
                             foreach ($Jersey as $j) : ?>
                                 <tr>
                                     <th scope="row"><?= $i++; ?></th>
@@ -70,6 +82,7 @@
                         </tbody>
 
                     </table>
+                    <?= $pager->links('jersey', 'pagination') ?>
 
                 </div>
             </div>

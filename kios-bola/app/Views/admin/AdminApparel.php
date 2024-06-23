@@ -11,7 +11,7 @@
                         Daftar Apparel
                     </h2>
                     <div class="d-flex justify-content-start my-3">
-                        <a href="jersey/create" class="btn btn-primary">Tambah Apparel</a>
+                        <a href="apparel/create" class="btn btn-primary">Tambah Apparel</a>
                     </div>
 
                     <table class="table table-hover">
@@ -39,9 +39,16 @@
                                     <td><img src="/asset/img/apparel/<?= $a['sampul']; ?>" alt="<?= $a['nama']; ?>" class="sampul"></td>
                                     <td>
                                         <div class="row">
-                                            <div class="d-flex justify-content-center gap-3">
-                                                <a href="" class="btn btn-danger">delete</a>
-                                                <a href="" class="btn btn-success">update</a>
+                                            <div class="d-flex justify-content-center gap-3 align-items-center">
+                                                <a href="/admin/apparel/edit/<?= $a['slug']; ?>"><i class="fa-solid fa-pen-to-square fa-xl" style="color: #358754;"></i></a>
+
+                                                <form action="/admin/apparel/<?= $a['id']; ?>" method="post" class="d-inline">
+                                                    <?= csrf_field(); ?>
+                                                    <input type="hidden" name="_method" value="DELETE">
+                                                    <button type="submit" class="btn" onclick="return confirm('apakah anda yakin ingin menghapusnya ?');"><i class="fa-solid fa-trash fa-xl" style="color: #ff0000;"></i></button>
+                                                </form>
+
+
                                             </div>
                                         </div>
                                     </td>

@@ -19,42 +19,59 @@ class Admin extends BaseController
         $this->ApparelModel = new ApparelModel();
     }
     public function index()
-    { {
-            // $Jersey = $this->JerseyModel->findAll();
+    {
+        helper(['form', 'url']);
+        $current_page = $this->request->getVar('page_jersey') ? $this->request->getVar('page_jersey') : 1;
+        $keyword = $this->request->getGet('keyword');
 
-            $current_page = $this->request->getVar('page_jersey') ? $this->request->getVar('page_jersey') : 1;
-            d($this->request->getVar('keyword'));
-
-            $data = [
-                'title' => 'Admin | Jersey',
-                'activePage' => 'Jersey',
-                'Jersey' => $this->JerseyModel->paginate(5, 'jersey'),
-                'pager' => $this->JerseyModel->pager,
-                'current_page' => $current_page
-
-            ];
-
-            // $JerseyModel = new JerseyModel();
-            return view('admin/AdminJersey', $data);
+        if ($keyword) {
+            $this->JerseyModel->search($keyword);
         }
+
+        $data = [
+            'title' => 'Admin | Jersey',
+            'activePage' => 'Jersey',
+            'keyword' => $keyword,
+            'Jersey' => $this->JerseyModel->paginate(5, 'jersey'),
+            'pager' => $this->JerseyModel->pager,
+            'current_page' => $current_page
+        ];
+
+        return view('admin/AdminJersey', $data);
     }
     public function add_klub()
     {
-        $Klub = $this->KlubModel->findAll();
+        helper(['form', 'url']);
+        $current_page = $this->request->getVar('page_klub') ? $this->request->getVar('page_klub') : 1;
+        $keyword = $this->request->getGet('keyword');
+        if ($keyword) {
+            $this->KlubModel->search($keyword);
+        }
         $data = [
             'title' => 'Admin | Klub',
             'activePage' => 'Jersey',
-            'Klub' => $Klub
+            'keyword' => $keyword,
+            'Klub' => $this->KlubModel->paginate(5, 'klub'),
+            'pager' => $this->KlubModel->pager,
+            'current_page' => $current_page
         ];
         return view('admin/AdminKlub', $data);
     }
     public function add_apparel()
     {
-        $Apparel = $this->ApparelModel->findAll();
+        helper(['form', 'url']);
+        $current_page = $this->request->getVar('page_apparel') ? $this->request->getVar('page_apparel') : 1;
+        $keyword = $this->request->getGet('keyword');
+        if ($keyword) {
+            $this->ApparelModel->search($keyword);
+        }
         $data = [
             'title' => 'Admin | Apparel',
             'activePage' => 'Jersey',
-            'Apparel' => $Apparel
+            'keyword' => $keyword,
+            'Apparel' => $this->ApparelModel->paginate(5, 'klub'),
+            'pager' => $this->ApparelModel->pager,
+            'current_page' => $current_page
         ];
         return view('admin/AdminApparel', $data);
     }

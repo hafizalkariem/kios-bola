@@ -42,6 +42,12 @@ class JerseyModel extends Model
     {
         return $this->countAllResults();
     }
+    public function search($keyword)
+    {
+        return $this->like('judul', $keyword)
+            ->orLike('slug', $keyword)
+            ->orLike('id', $keyword);
+    }
 }
     // public function getJerseys()
     // {

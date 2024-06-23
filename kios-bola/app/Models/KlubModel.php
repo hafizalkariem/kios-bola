@@ -38,9 +38,13 @@ class KlubModel extends Model
 
         return $this->where(['slug' => $slug])->first();
     }
+
+
     public function search($keyword)
     {
-        return $this->table('klub')->like('nama', $keyword)->orLike('logo', $keyword);
+        return $this->like('nama', $keyword)
+            ->orLike('slug', $keyword)
+            ->orLike('id_klub', $keyword);
     }
     // Di dalam model Anda, misalnya JerseyModel.php
     // public function getJerseys()

@@ -1529,6 +1529,12 @@ section {
   overflow: hidden;
 }
 
+.divider-vertical {
+  border-left: 1px solid #cf1006;
+  height: 30px;
+  margin: auto 10px;
+}
+
 .custom-select {
   max-height: 200px; /* Ketinggian maksimum select */
   overflow-y: auto; /* Menampilkan scrollbar jika lebih banyak opsi */

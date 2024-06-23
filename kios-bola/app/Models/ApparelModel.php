@@ -22,6 +22,12 @@ class ApparelModel extends Model
 
         return $this->where(['slug' => $slug])->first();
     }
+    public function search($keyword)
+    {
+        return $this->like('nama', $keyword)
+            ->orLike('slug', $keyword)
+            ->orLike('id', $keyword);
+    }
     // Di dalam model Anda, misalnya JerseyModel.php
     // public function getJerseys()
     // {

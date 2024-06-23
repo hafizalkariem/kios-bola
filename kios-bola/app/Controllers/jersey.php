@@ -24,26 +24,19 @@ class Jersey extends BaseController
         $clubId = $this->request->getGet('club_id');
 
         if (!empty($clubId)) {
-            $JerseyModel = new JerseyModel();
-            $Jerseys = $JerseyModel->findByClub($clubId);
-            $data = [
-                'title' => 'Jersey | Kios Bola',
-                'activePage' => 'pricing',
-                'Jerseys' => $Jerseys,
-                'klub' => $this->KlubModel->findAll()
-            ];
-            return view('jersey/jersey', $data);
+            $Jerseys = $this->JerseyModel->findByClub($clubId);
         } else {
-            $JerseyModel = new JerseyModel();
-            $Jerseys = $JerseyModel->findAllWithClub();
-
-            $data = [
-                'title' => 'Jersey | Kios Bola',
-                'activePage' => 'pricing',
-                'Jerseys' => $Jerseys,
-            ];
-            return view('jersey/jersey', $data);
+            $Jerseys = $this->JerseyModel->findAllWithClub();
         }
+
+        $data = [
+            'title' => 'Jersey | Kios Bola',
+            'activePage' => 'pricing',
+            'Jerseys' => $Jerseys,
+            'klub' => $this->KlubModel->findAll()
+        ];
+
+        return view('jersey/jersey', $data);
     }
 
     public function create()

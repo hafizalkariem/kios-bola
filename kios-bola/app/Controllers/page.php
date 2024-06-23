@@ -5,18 +5,23 @@ namespace App\Controllers;
 use App\Models\KlubModel;
 use App\Models\JerseyModel;
 use App\Models\ApparelModel;
+use \Myth\Auth\Models\UserModel;
 use App\Config\Services;
+
+
 
 class page extends BaseController
 {
     protected $JerseyModel;
     protected $KlubModel;
     protected $ApparelModel;
+    protected $UserModel;
     public function __construct()
     {
         $this->KlubModel = new KlubModel();
         $this->JerseyModel = new JerseyModel();
         $this->ApparelModel = new ApparelModel();
+        $this->UserModel = new UserModel();
     }
 
 
@@ -36,13 +41,16 @@ class page extends BaseController
         $Jersey = new JerseyModel();
         $Klub = new KlubModel();
         $Apparel = new ApparelModel();
+        $Users = new UserModel();
+
 
         $data = [
             'title' => 'About us',
             'activePage' => 'about',
             'totalApparels' => $Apparel->getCount(),
             'totalklub' => $Klub->getCount(),
-            'totalJersey' => $Jersey->getCount()
+            'totalJersey' => $Jersey->getCount(),
+            'totalUser' => $Users->getCount()
         ];
         return view('pages/about', $data);
     }

@@ -27,6 +27,7 @@
 
     <!-- Template Main CSS File -->
     <link href="<?= base_url('asset/css/style.css'); ?>" rel="stylesheet">
+    <link href="<?= base_url('css/sb-admin-2.min.css') ?>" rel="stylesheet" />
     <!-- link bootsrapt -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -66,19 +67,49 @@
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav><!-- .navbar -->
-            <!-- search -->
+            <!-- shopping cart -->
 
-            <!-- end search -->
+            <!-- end shopping cart -->
 
             <?php if (logged_in()) : ?>
-                <div class="d-flex justify-content-center gap-3 align-items-center">
-                    <a href="<?= base_url('logout'); ?>" class="">
-                        <div class="col gap-2">
-                            <i class="fa-solid fa-right-from-bracket fa-xl" style="color: #cf1006;"></i>
-                            <p class="d-inline gap-2" style="color: #cf1006;"> logout </p>
-                        </div>
 
-                    </a>
+                <div class="d-flex justify-content-center gap-3 align-items-center">
+
+                    <!-- profil users -->
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa-regular fa-user fa-xl" style="color: #cf1006;"></i>
+                            </a>
+                            <ul class=" dropdown-menu dropdown-menu-start" aria-labelledby="navbarDropdown">
+                                <li>
+                                    <div class="d-flex justify-content-center align-items-center"><strong><?= user()->username; ?></strong></div>
+
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-user"></i>
+                                        <div class="divider-vertical d-inline" style="border: 1px solid #ffffff;"></div> Profil
+                                    </a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="<?= base_url('logout'); ?>">
+                                        <i class="fa-solid fa-right-from-bracket"></i>
+                                        <div class="divider-vertical d-inline" style="border: 1px solid #ffffff;"></div> Logout
+                                    </a></li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <!-- end profile -->
+                    <div class="divider-vertical d-inline"></div>
+                    <!-- shoping cart -->
+                    <div class="d-flex justify-content-center gap-3 align-items-center">
+                        <a href="#"><i class="fa fa-shopping-cart fa-xl" style="color: #cf1006;"></i></a>
+                    </div>
+                    <!-- end shoping cart -->
                 </div>
             <?php else : ?>
                 <div class="d-flex justify-content-center gap-3 align-items-center">
@@ -90,7 +121,9 @@
 
                     </a>
                 </div>
+
             <?php endif; ?>
+
 
         </div>
     </header><!-- End Header -->
@@ -153,8 +186,9 @@
                         <h4>Apparels</h4>
                         <p>Join Our Apparels Collaborators</p>
                         <div class="row row-cols-4" data-aos="zoom-in" data-aos-delay="100">
+
                             <div class="col d-flex align-items-start justify-content-center m-0 p-0">
-                                <img src="<?= base_url('asset/img/apparel/adidas.png'); ?>" alt="league-logo" class="league" />
+                                <img src="<?= base_url(); ?>/asset/img/apparel/adidas.png" alt="league-logo" class="league" />
                             </div>
                             <div class="col d-flex align-items-start justify-content-center m-0 p-0">
                                 <img src="<?= base_url('asset/img/apparel/asics.png'); ?>" alt="league-logo" class="league" />
@@ -220,9 +254,14 @@
 
     <!-- Template Main JS File -->
     <script src="<?= base_url('asset/js/main.js'); ?>"></script>
-    <script>
-        feather.replace();
-    </script>
+    <script src="<?= base_url(); ?>/vendor/jquery/jquery.min.js"></script>
+    <script src="<?= base_url(); ?>/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="<?= base_url(); ?>/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="<?= base_url(); ?>/js/sb-admin-2.min.js"></script>
 
 </body>
 

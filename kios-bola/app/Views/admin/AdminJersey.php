@@ -11,13 +11,16 @@
                     <h2 class="my-5">
                         Daftar Jersey
                     </h2>
-                    <form action="" method="POST">
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Masukan Keyword" aria-describedby="button-addon2" name="keyword">
-                            <button class="btn btn-outline-secondary" type="submit" name="submit">Search</button>
+                    <form action="" method="get" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        <div class="input-group">
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" name="keyword" value="<?= $keyword; ?>" />
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="submit" name="submit">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                            </div>
                         </div>
                     </form>
-
                 </div>
             </div>
             <div class="row">
@@ -60,7 +63,7 @@
                                     <td><?= $j['judul']; ?></td>
                                     <td><?= $j['slug']; ?></td>
                                     <td><?= $j['ketersediaan']; ?></td>
-                                    <td> Rp <strong><?= $j['harga']; ?></strong></td>
+                                    <td><strong><?= number_to_currency($j['harga'], 'IDR'); ?></strong></td>
                                     <td><?= $j['created_at']; ?></td>
                                     <td>
                                         <div class="row">
@@ -72,8 +75,6 @@
                                                     <input type="hidden" name="_method" value="DELETE">
                                                     <button type="submit" class="btn" onclick="return confirm('apakah anda yakin ingin menghapusnya ?');"><i class="fa-solid fa-trash fa-xl" style="color: #ff0000;"></i></button>
                                                 </form>
-
-
                                             </div>
                                         </div>
                                     </td>
@@ -88,9 +89,6 @@
             </div>
         </div>
     </section>
-
-    <!-- ======= jersey Section ======= -->
-
 
 </main><!-- End #main -->
 

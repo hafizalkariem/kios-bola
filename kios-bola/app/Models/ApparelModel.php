@@ -7,13 +7,9 @@ use CodeIgniter\Model;
 class ApparelModel extends Model
 {
     protected $table = 'apparel';
-    protected $useTimestamps = true;
-    protected $allowedFields = ['nama', 'sampul' . 'slug'];
+    protected $primaryKey = 'id';
+    protected $allowedFields = ['nama', 'sampul', 'slug'];
 
-    public function getCount()
-    {
-        return $this->countAllResults();
-    }
     public function getApparel($slug = false)
     {
         if ($slug === false) {
@@ -22,21 +18,30 @@ class ApparelModel extends Model
 
         return $this->where(['slug' => $slug])->first();
     }
+
+    public function saveApparel($data)
+    {
+        return $this->insert($data);
+    }
+
+    public function updateApparel($id, $data)
+    {
+        return $this->update($id, $data);
+    }
+
+    public function deleteApparel($id)
+    {
+        return $this->delete($id);
+    }
+
     public function search($keyword)
     {
         return $this->like('nama', $keyword)
             ->orLike('slug', $keyword)
             ->orLike('id', $keyword);
     }
-    // Di dalam model Anda, misalnya JerseyModel.php
-    // public function getJerseys()
-    // {
-    //     $builder = $this->db->table('jersey');
-    //     $builder->select('jersey.*, klub.nama as nama_klub');
-    //     $builder->join('klub', 'klub.id = jersey.id_klub');
-    //     $query = $builder->get();
-    //     return $query->getResultArray();
-    // }
-
-    // ...
+    public function getCount()
+    {
+        return $this->countAllResults();
+    }
 }

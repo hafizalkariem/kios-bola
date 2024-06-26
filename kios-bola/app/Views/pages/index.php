@@ -6,7 +6,9 @@
   <div class="container position-relative" data-aos="zoom-in" data-aos-delay="100">
     <h1>Tampil Beda<br />Dengan Jersey Bola</h1>
     <h2>Temukan Jersey Klub Favoritmu Hanya Di KIOS BOLA</h2>
-    <a href="courses.php" class="btn-get-started">Get Started</a>
+    <?php if (!logged_in()) : ?>
+      <a href="<?= base_url('login'); ?>" class="btn-get-started">Get Started</a>
+    <?php endif; ?>
   </div>
 </section>
 <!-- End Hero -->

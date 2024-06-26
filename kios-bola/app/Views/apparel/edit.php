@@ -1,14 +1,10 @@
-<?php
-
-use PhpParser\Node\Stmt\Echo_;
-?>
 <?= $this->extend('layout/template'); ?>
 
 <?= $this->section('content'); ?>
 <main id="main">
 
     <?= $this->include('layout/breadcrumbs'); ?>
-    <section id="create" class="create">
+    <section id="edit" class="edit">
         <div class="container">
             <div class="row">
                 <div class="col-8">
@@ -16,7 +12,11 @@ use PhpParser\Node\Stmt\Echo_;
                         <h2><strong>Form Edit Apparel</strong></h2>
                     </div>
                     <div class="row">
-                        <?php $session = \Config\Services::session(); ?>
+                        <?php if (session()->getFlashdata('pesan')) : ?>
+                            <div class="alert alert-success" role="alert">
+                                <?= session()->getFlashdata('pesan'); ?>
+                            </div>
+                        <?php endif; ?>
                         <?php if (isset($validation)) : ?>
                             <div class="text-danger">
                                 <?= $validation->listErrors() ?>
@@ -25,28 +25,27 @@ use PhpParser\Node\Stmt\Echo_;
 
                         <form action="/admin/apparel/update/<?= $apparel['id']; ?>" method="post" enctype="multipart/form-data">
                             <?= csrf_field(); ?>
+                            <input type="hidden" name="sampul_lama" value="<?= $apparel['sampul']; ?>">
                             <div class="row mb-3">
-                                <!-- judul -->
                                 <label for="nama" class="col-sm-2 col-form-label">Nama</label>
                                 <div class="col-sm-10 mb-3">
-                                    <input type="text" class="form-control <?= ($validation->hasError('nama')) ? ' is-invalid' : ''; ?>" id="nama" name="nama" value="<?= $apparel['nama']; ?>" autofocus>
-                                </div>
-                                <div class="invalid-feedback">
-                                    <?= $validation->getError('nama'); ?>
-                                </div>
-                            </div>
-                            <!-- sampul -->
-                            <div class="row mb-3">
-                                <label for="sampul" class="col-sm-2 col-form-label">Sampul</label>
-                                <div class="col-sm-10 mb-3">
-                                    <input type="file" class="form-control <?= ($validation->hasError('sampul')) ? 'is-invalid' : ''; ?>" id="sampul" name="sampul" value="<?= $apparel['sampul']; ?>" accept="image/*">
-                                </div>
-                                <div class="invalid-feedback">
-                                    <?= $validation->getError('sampul'); ?>
+                                    <input type="text" class="form-control <?= ($validation->hasError('nama')) ? 'is-invalid' : ''; ?>" id="nama" name="nama" value="<?= (old('nama')) ? old('nama') : $apparel['nama']; ?>">
+                                    <div class="invalid-feedback">
+                                        <?= $validation->getError('nama'); ?>
+                                    </div>
                                 </div>
                             </div>
 
-                            <!-- Tombol submit -->
+                            <div class="row mb-3">
+                                <label for="sampul" class="col-sm-2 col-form-label">Sampul</label>
+                                <div class="col-sm-10 mb-3">
+                                    <input type="file" class="form-control <?= ($validation->hasError('sampul')) ? 'is-invalid' : ''; ?>" id="sampul" name="sampul" accept="image/*">
+                                    <div class="invalid-feedback">
+                                        <?= $validation->getError('sampul'); ?>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="row mb-3">
                                 <div class="col-sm-10 offset-sm-2">
                                     <button type="submit" class="btn btn-primary">Submit</button>

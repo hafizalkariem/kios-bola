@@ -64,19 +64,22 @@ class page extends BaseController
     }
     public function pricing()
     {
-        $keyword = $this->request->getVar('keyword');
+        helper(['form', 'url']);
+        $keyword = $this->request->getGet('keyword');
         if ($keyword) {
-            $Klub = $this->KlubModel->search($keyword);
-        } else {
-            $Klub = $this->KlubModel->findAll();
+            $this->KlubModel->search($keyword);
         }
 
         $data = [
             'title' => 'Daftar Klub | Kios Bola',
             'activePage' => 'pricing',
-            'Klub' => $Klub
+            'Klub' => $this->KlubModel->paginate(8, 'klub'),
+            'pager' => $this->KlubModel->pager,
+            'keyword' => $keyword,
+
 
         ];
+
         return view('pages/pricing', $data);
     }
 }

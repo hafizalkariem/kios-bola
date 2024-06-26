@@ -78,8 +78,14 @@
                     <!-- profil users -->
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item dropdown">
+
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fa-regular fa-user fa-xl" style="color: #cf1006;"></i>
+                                <?php if (user()->user_image) : ?>
+                                    <img src="<?= base_url(); ?>/asset/img/user_image/<?= user()->user_image; ?>" class="rounded-circle" style="width: 50px; height: 50px">
+                                <?php else : ?>
+                                    <!-- <i class="fa-regular fa-user fa-xl" style="color: #cf1006;"></i> -->
+                                    <img src="<?= base_url(); ?>/asset/img/user_image/default.jpg" class="rounded-circle" style="width: 50px; height: 50px">
+                                <?php endif; ?>
                             </a>
                             <ul class=" dropdown-menu dropdown-menu-start" aria-labelledby="navbarDropdown">
                                 <li>
@@ -89,7 +95,7 @@
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-user"></i>
+                                <li><a class="dropdown-item" href="<?= base_url('/profile'); ?>"><i class="fa-solid fa-user"></i>
                                         <div class="divider-vertical d-inline" style="border: 1px solid #ffffff;"></div> Profil
                                     </a></li>
                                 <li>
@@ -255,6 +261,8 @@
     <!-- Template Main JS File -->
     <script src="<?= base_url('asset/js/main.js'); ?>"></script>
     <script src="<?= base_url(); ?>/vendor/jquery/jquery.min.js"></script>
+
+
     <script src="<?= base_url(); ?>/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
@@ -262,6 +270,7 @@
 
     <!-- Custom scripts for all pages-->
     <script src="<?= base_url(); ?>/js/sb-admin-2.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 </body>
 

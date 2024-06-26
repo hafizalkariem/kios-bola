@@ -131,9 +131,16 @@ class Jersey extends BaseController
 
     public function delete($id)
     {
+        // kita ambil id dari data yang ingin kita hapus
         $Jersey = $this->JerseyModel->find($id);
 
-        unlink('asset/img/jersey/' . $Jersey['sampul']);
+        // kita periksa file/gambar yang ada di patch nya
+        $imagePath = 'asset/img/jersey/' . $Jersey['sampul'];
+        // kita periksa apakah ada atau tdk
+        if (file_exists($imagePath)) {
+            unlink($imagePath);
+        }
+        // hapus data jerseynya
         $this->JerseyModel->delete($id);
         session()->setFlashdata('pesan', 'Data berhasil dihapus.');
         return redirect()->to('/admin/jersey');
@@ -167,8 +174,6 @@ class Jersey extends BaseController
     }
     public function update($id)
     {
-
-
         $jerseyLama = $this->JerseyModel->getJersey($this->request->getVar('slug'));
         if ($jerseyLama['judul'] == $this->request->getVar('judul')) {
             $rule_judul = 'required';
@@ -178,9 +183,8 @@ class Jersey extends BaseController
 
         $validate = $this->validate([
             'sampul' => [
-                'rules' => 'uploaded[sampul]|max_size[sampul,2048]|is_image[sampul]|mime_in[sampul,image/jpg,image/jpeg,image/png]',
+                'rules' => 'max_size[sampul,2048]|is_image[sampul]|mime_in[sampul,image/jpg,image/jpeg,image/png]',
                 'errors' => [
-                    'uploaded' => '{field} harus diisi',
                     'max_size' => 'ukuran {field} terlalu besar.',
                     'is_image' => '{field} harus berupa gambar.',
                     'mime_in' => '{field} harus berupa gambar yang valid.'
@@ -218,13 +222,23 @@ class Jersey extends BaseController
         ]);
 
         if (!$validate) {
-
             $validation = \config\Services::validation();
             return redirect()->to('/jersey/edit/' . $this->request->getVar('slug'))->withInput()->with('validation', $validation);
         }
+
         $sampul = $this->request->getFile('sampul');
-        $sampulName = $sampul->getRandomName();
-        $sampul->move('asset/img/jersey', $sampulName);
+        if ($sampul->getError() == 4) {
+            // Jika tidak ada gambar baru yang diunggah, gunakan sampul lama
+            $sampulName = $this->request->getPost('sampul_lama');
+        } else {
+            // Jika ada gambar baru, upload dan ganti sampul lama
+            $sampulName = $sampul->getRandomName();
+            $sampul->move('asset/img/jersey', $sampulName);
+            // Hapus file sampul lama
+            if (file_exists('asset/img/jersey/' . $this->request->getPost('sampul_lama'))) {
+                unlink('asset/img/jersey/' . $this->request->getPost('sampul_lama'));
+            }
+        }
 
         $judul = $this->request->getPost('judul');
         $id_klub = $this->request->getPost('id_klub');

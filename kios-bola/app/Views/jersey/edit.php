@@ -17,6 +17,8 @@
 
                             <?= csrf_field(); ?>
                             <input type="hidden" name="slug" value="<?= $jersey['slug']; ?>">
+                            <input type="hidden" name="sampul_lama" value="<?= $jersey['sampul']; ?>">
+
                             <div class="row mb-3">
                                 <!-- judul -->
                                 <label for="judul" class="col-sm-2 col-form-label">Judul</label>
@@ -86,10 +88,13 @@
                             <div class="row mb-3">
                                 <label for="sampul" class="col-sm-2 col-form-label">Sampul</label>
                                 <div class="col-sm-10 mb-3">
-                                    <input type="file" class="form-control <?= $validation->hasError('sampul') ? 'is-invalid' : ''; ?>" id="sampul" name="sampul" accept="image/*" value="<?= $jersey['sampul']; ?>">
+                                    <input type="file" class="form-control <?= $validation->hasError('sampul') ? 'is-invalid' : ''; ?>" id="sampul" name="sampul" accept="image/*">
                                     <div class="invalid-feedback">
                                         <?= $validation->getError('sampul'); ?>
                                     </div>
+                                    <?php if ($jersey['sampul']) : ?>
+                                        <img src="<?= base_url(); ?>asset/img/klub/<?= $jersey['sampul']; ?>" alt="Sampul Jersey" class="img-thumbnail mt-3" width="150">
+                                    <?php endif; ?>
                                 </div>
                             </div>
 

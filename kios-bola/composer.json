@@ -13,6 +13,7 @@
     "php": "^7.4 || ^8.0",
     "codeigniter4/framework": "^4.0",
     "google/apiclient": "^2.0",
+    "muratdemirel/codeigniter4-cart": "^0.1.3",
     "myth/auth": "^1.2"
   },
   "require-dev": {

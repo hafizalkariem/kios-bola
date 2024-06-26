@@ -1,7 +1,3 @@
-<?php
-
-use PhpParser\Node\Stmt\Echo_;
-?>
 <?= $this->extend('layout/template'); ?>
 
 <?= $this->section('content'); ?>
@@ -25,24 +21,28 @@ use PhpParser\Node\Stmt\Echo_;
 
                         <form action="/admin/klub/update/<?= $klub['id_klub']; ?>" method="post" enctype="multipart/form-data">
                             <?= csrf_field(); ?>
+                            <input type="hidden" name="logo_lama" value="<?= $klub['logo']; ?>">
                             <div class="row mb-3">
-                                <!-- judul -->
+                                <!-- Nama -->
                                 <label for="nama" class="col-sm-2 col-form-label">Nama</label>
                                 <div class="col-sm-10 mb-3">
-                                    <input type="text" class="form-control <?= ($validation->hasError('nama')) ? ' is-invalid' : ''; ?>" id="nama" name="nama" value="<?= $klub['nama']; ?>" autofocus>
-                                </div>
-                                <div class="invalid-feedback">
-                                    <?= $validation->getError('nama'); ?>
+                                    <input type="text" class="form-control <?= ($validation->hasError('nama')) ? 'is-invalid' : ''; ?>" id="nama" name="nama" value="<?= old('nama', $klub['nama']); ?>" autofocus>
+                                    <div class="invalid-feedback">
+                                        <?= $validation->getError('nama'); ?>
+                                    </div>
                                 </div>
                             </div>
-                            <!-- sampul -->
+                            <!-- Logo -->
                             <div class="row mb-3">
                                 <label for="logo" class="col-sm-2 col-form-label">Logo</label>
                                 <div class="col-sm-10 mb-3">
-                                    <input type="file" class="form-control <?= ($validation->hasError('nama')) ? 'is-invalid' : ''; ?>" id="logo" name="logo" value="<?= $klub['logo']; ?>" accept="image/*">
-                                </div>
-                                <div class="invalid-feedback">
-                                    <?= $validation->getError('logo'); ?>
+                                    <input type="file" class="form-control <?= ($validation->hasError('logo')) ? 'is-invalid' : ''; ?>" id="logo" name="logo" accept="image/*">
+                                    <div class="invalid-feedback">
+                                        <?= $validation->getError('logo'); ?>
+                                    </div>
+                                    <?php if ($klub['logo']) : ?>
+                                        <img src="<?= base_url(); ?>asset/img/klub/<?= $klub['logo']; ?>" alt="logo klub" class="img-thumbnail mt-3" width="150">
+                                    <?php endif; ?>
                                 </div>
                             </div>
 

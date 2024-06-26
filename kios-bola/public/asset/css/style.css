@@ -1838,3 +1838,282 @@ section {
   max-width: 30px;
   height: auto;
 }
+
+/* profile */
+
+.profile {
+  padding: 50px 0;
+}
+
+.card-profile {
+  border: none;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.card-header {
+  position: relative;
+  height: 300px; /* Tinggi header yang cukup untuk background-image */
+  background-image: url("/asset/img/background.jpg");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 50px; /* Ruang di bagian bawah header */
+}
+
+.profile-picture {
+  position: absolute;
+  top: 50%; /* Posisi vertikal di tengah */
+  transform: translateY(30%); /* Adjust vertikal ke atas */
+  width: 150px; /* Ukuran gambar profil */
+  height: 150px; /* Ukuran gambar profil */
+  overflow: hidden;
+  border-radius: 50%; /* Untuk membuat gambar profil bulat */
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Efek bayangan halus */
+}
+
+.profile-picture img {
+  width: 100%; /* Memastikan gambar profil mengisi seluruh ruang yang tersedia */
+  height: 100%;
+  object-fit: cover; /* Memastikan gambar tidak terdistorsi */
+}
+
+.card-body {
+  padding-top: 220px; /* Sesuaikan dengan kebutuhan jarak yang diinginkan */
+}
+
+.card-footer {
+  background: #f8f9fa;
+  padding: 15px 0;
+}
+
+.user-stats .number {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.user-stats .title {
+  font-size: 14px;
+  color: #999;
+}
+
+/* Media Queries untuk Responsivitas */
+@media (max-width: 768px) {
+  .card-header {
+    height: 200px; /* Tinggi header responsif */
+  }
+
+  .profile-picture {
+    width: 120px; /* Ukuran gambar profil responsif */
+    height: 120px; /* Ukuran gambar profil responsif */
+  }
+
+  .card-body {
+    padding-top: 190px; /* Padding-top responsif */
+  }
+
+  .user-profile .name {
+    font-size: 20px; /* Ukuran nama responsif */
+  }
+
+  .user-profile .job {
+    font-size: 14px; /* Ukuran pekerjaan responsif */
+  }
+
+  .user-profile .desc {
+    font-size: 12px; /* Ukuran deskripsi responsif */
+  }
+
+  .user-stats .number {
+    font-size: 16px; /* Ukuran angka statistik responsif */
+  }
+
+  .user-stats .title {
+    font-size: 12px; /* Ukuran judul statistik responsif */
+  }
+}
+
+@media (max-width: 576px) {
+  .card-header {
+    height: 150px; /* Tinggi header responsif */
+  }
+
+  .profile-picture {
+    width: 100px; /* Ukuran gambar profil responsif */
+    height: 100px; /* Ukuran gambar profil responsif */
+  }
+
+  .card-body {
+    padding-top: 160px; /* Padding-top responsif */
+  }
+
+  .user-profile .name {
+    font-size: 18px; /* Ukuran nama responsif */
+  }
+
+  .user-profile .job {
+    font-size: 12px; /* Ukuran pekerjaan responsif */
+  }
+
+  .user-profile .desc {
+    font-size: 10px; /* Ukuran deskripsi responsif */
+  }
+
+  .user-stats .number {
+    font-size: 14px; /* Ukuran angka statistik responsif */
+  }
+
+  .user-stats .title {
+    font-size: 10px; /* Ukuran judul statistik responsif */
+  }
+}
+
+/* Modal CSS */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+.modal-content {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+}
+
+.close {
+  position: absolute;
+  top: 50px;
+  right: 100px;
+  color: #fff;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 700px) {
+  .modal-content {
+    width: 100%;
+  }
+  .close {
+    top: 15px;
+    right: 35px;
+  }
+}
+.search-form {
+  max-width: 800px; /* Increase the max-width to make the input longer */
+  width: 100%;
+}
+
+.search-form .input-group {
+  width: 100%;
+}
+
+.search-form .search-input {
+  width: calc(100% - 100px); /* Adjust the width of the input field */
+}
+
+body {
+  background: #eee;
+}
+
+.card {
+  border: none;
+
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* .card:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 4px;
+  height: 100%;
+  background-color: #e1bee7;
+  transform: scaleY(1);
+  transition: all 0.5s;
+  transform-origin: bottom;
+}
+
+.card:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 4px;
+  height: 100%;
+  background-color: #cf1006;
+  transform: scaleY(0);
+  transition: all 0.5s;
+  transform-origin: bottom;
+}
+
+.card:hover::after {
+  transform: scaleY(1);
+} */
+
+.fonts {
+  font-size: 11px;
+}
+
+.social-list {
+  display: flex;
+  list-style: none;
+  justify-content: center;
+  padding: 0;
+}
+
+.social-list li {
+  padding: 10px;
+  color: #cf1006;
+  font-size: 19px;
+}
+
+.buttons button:nth-child(1) {
+  border: 1px solid #cf1006 !important;
+  color: #cf1006;
+  height: 40px;
+}
+
+.buttons button:nth-child(1):hover {
+  border: 1px solid #cf1006 !important;
+  color: #fff;
+  height: 40px;
+  background-color: #cf1006;
+}
+
+.buttons button:nth-child(2) {
+  border: 1px solid #cf1006 !important;
+  background-color: #cf1006;
+  color: #fff;
+  height: 40px;
+}
+
+.rounded-circle {
+  width: 200px;
+  height: 200px;
+  object-fit: cover; /* Atau gunakan 'contain' tergantung dari kebutuhan desain Anda */
+  border-radius: 50%; /* Untuk membuat gambar menjadi lingkaran */
+}

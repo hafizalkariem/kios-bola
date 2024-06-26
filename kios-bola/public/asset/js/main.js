@@ -136,3 +136,16 @@
    */
   new PureCounter();
 })();
+
+function showProfileImage(src) {
+  var modal = document.getElementById("profileImageModal");
+  var modalImg = document.getElementById("modalProfileImage");
+
+  modal.style.display = "block";
+  modalImg.src = src;
+}
+
+function closeProfileImage() {
+  var modal = document.getElementById("profileImageModal");
+  modal.style.display = "none";
+}

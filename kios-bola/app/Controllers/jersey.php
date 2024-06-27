@@ -3,20 +3,30 @@
 namespace App\Controllers;
 
 use App\Models\JerseyModel;
-use App\Models\KlubModel;
+use \Myth\Auth\Models\UserModel;
+use App\Models\CartModel;
+use App\Models\CartItemModel;
 use App\Models\ApparelModel;
+use App\Models\KlubModel;
 
 class Jersey extends BaseController
 {
-    protected $KlubModel;
     protected $JerseyModel;
+    protected $UserModel;
+    protected $CartModel;
+    protected $CartItemModel;
     protected $ApparelModel;
+    protected $KlubModel;
+
 
     public function __construct()
     {
         $this->JerseyModel = new JerseyModel();
-        $this->KlubModel = new KlubModel();
+        $this->UserModel = new UserModel();
+        $this->CartModel = new CartModel();
+        $this->CartItemModel = new CartItemModel();
         $this->ApparelModel = new ApparelModel();
+        $this->KlubModel = new KlubModel();
     }
 
     public function index()
@@ -28,12 +38,21 @@ class Jersey extends BaseController
         } else {
             $Jerseys = $this->JerseyModel->findAllWithClub();
         }
-
+        //  template
+        $userId = user_id(); // Ambil user_id dari sesi atau cara Anda yang sesuai
+        $cart = $this->CartModel->getCartByUserId($userId);
+        if (!$cart) {
+            // Jika tidak ada keranjang, buat keranjang baru untuk user
+            $cartId = $this->CartModel->createCart($userId);
+            $cart = $this->CartModel->find($cartId);
+        }
+        // template
         $data = [
             'title' => 'Jersey | Kios Bola',
             'activePage' => 'pricing',
             'Jerseys' => $Jerseys,
-            'klub' => $this->KlubModel->findAll()
+            'klub' => $this->KlubModel->findAll(),
+            'totalItemsInCart' => $this->CartItemModel->getTotalItemsInCart($userId)
         ];
 
         return view('jersey/jersey', $data);
@@ -41,7 +60,15 @@ class Jersey extends BaseController
 
     public function create()
 
-    {
+    { //  template
+        $userId = user_id(); // Ambil user_id dari sesi atau cara Anda yang sesuai
+        $cart = $this->CartModel->getCartByUserId($userId);
+        if (!$cart) {
+            // Jika tidak ada keranjang, buat keranjang baru untuk user
+            $cartId = $this->CartModel->createCart($userId);
+            $cart = $this->CartModel->find($cartId);
+        }
+        // template
         $Klub = $this->KlubModel->findAll();
         $Apparel = $this->ApparelModel->findAll();
         session();
@@ -50,7 +77,8 @@ class Jersey extends BaseController
             'activePage' => 'jersey',
             'Klub' => $Klub,
             'Apparel' => $Apparel,
-            'validation' => \Config\Services::validation()
+            'validation' => \Config\Services::validation(),
+            'totalItemsInCart' => $this->CartItemModel->getTotalItemsInCart($userId)
         ];
         return view('jersey/create', $data);
     }
@@ -158,7 +186,15 @@ class Jersey extends BaseController
         // Retrieve klub and apparel data
         $Klub = $this->KlubModel->findAll();
         $Apparel = $this->ApparelModel->findAll();
-
+        //  template
+        $userId = user_id(); // Ambil user_id dari sesi atau cara Anda yang sesuai
+        $cart = $this->CartModel->getCartByUserId($userId);
+        if (!$cart) {
+            // Jika tidak ada keranjang, buat keranjang baru untuk user
+            $cartId = $this->CartModel->createCart($userId);
+            $cart = $this->CartModel->find($cartId);
+        }
+        // template
         // Prepare data to pass to view
         $data = [
             'title' => 'Edit Jersey',
@@ -166,7 +202,8 @@ class Jersey extends BaseController
             'Klub' => $Klub,
             'Apparel' => $Apparel,
             'validation' => \Config\Services::validation(),
-            'jersey' => $jersey, // Pass jersey data to view
+            'jersey' => $jersey,
+            'totalItemsInCart' => $this->CartItemModel->getTotalItemsInCart($userId) // Pass jersey data to view
         ];
 
         // Load view with data

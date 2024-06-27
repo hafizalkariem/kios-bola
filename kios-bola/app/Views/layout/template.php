@@ -112,9 +112,18 @@
                     <!-- end profile -->
                     <div class="divider-vertical d-inline"></div>
                     <!-- shoping cart -->
-                    <div class="d-flex justify-content-center gap-3 align-items-center">
-                        <a href="#"><i class="fa fa-shopping-cart fa-xl" style="color: #cf1006;"></i></a>
+                    <div class="d-flex justify-content-center gap-3 align-items-center position-relative">
+                        <a href="<?= base_url('cart'); ?>" class="postion-relative">
+                            <i class="fa fa-shopping-cart fa-2xl" style="color: #cf1006;"></i>
+
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger badge-sm" style="top: -5px;">
+                                <?= $totalItemsInCart; ?>
+                                <span class="visually-hidden">unread messages</span>
+                            </span>
+                        </a>
                     </div>
+
+
                     <!-- end shoping cart -->
                 </div>
             <?php else : ?>

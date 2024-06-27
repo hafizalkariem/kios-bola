@@ -8,6 +8,12 @@ use CodeIgniter\HTTP\IncomingRequest;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 use Psr\Log\LoggerInterface;
+use App\Models\JerseyModel;
+use \Myth\Auth\Models\UserModel;
+use App\Models\CartModel;
+use App\Models\CartItemModel;
+use App\Models\ApparelModel;
+use App\Models\KlubModel;
 
 /**
  * Class BaseController
@@ -35,7 +41,7 @@ abstract class BaseController extends Controller
      *
      * @var list<string>
      */
-    protected $helpers = ['auth', 'number'];
+    protected $helpers = ['auth', 'number', 'cart_helper', 'AuthHelper'];
 
     /**
      * Be sure to declare properties for any property fetch you initialized.
@@ -55,5 +61,22 @@ abstract class BaseController extends Controller
 
         // E.g.: $this->session = \Config\Services::session();
         session();
+    }
+    protected $JerseyModel;
+    protected $UserModel;
+    protected $CartModel;
+    protected $CartItemModel;
+    protected $ApparelModel;
+    protected $KlubModel;
+
+
+    public function __construct()
+    {
+        $this->JerseyModel = new JerseyModel();
+        $this->UserModel = new UserModel();
+        $this->CartModel = new CartModel();
+        $this->CartItemModel = new CartItemModel();
+        $this->ApparelModel = new ApparelModel();
+        $this->KlubModel = new KlubModel();
     }
 }

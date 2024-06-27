@@ -2,10 +2,12 @@
 
 namespace App\Controllers;
 
-use App\Models\KlubModel;
 use App\Models\JerseyModel;
-use App\Models\ApparelModel;
 use \Myth\Auth\Models\UserModel;
+use App\Models\CartModel;
+use App\Models\CartItemModel;
+use App\Models\ApparelModel;
+use App\Models\KlubModel;
 use App\Config\Services;
 
 
@@ -13,31 +15,54 @@ use App\Config\Services;
 class page extends BaseController
 {
     protected $JerseyModel;
-    protected $KlubModel;
-    protected $ApparelModel;
     protected $UserModel;
+    protected $CartModel;
+    protected $CartItemModel;
+    protected $ApparelModel;
+    protected $KlubModel;
+
+
     public function __construct()
     {
-        $this->KlubModel = new KlubModel();
         $this->JerseyModel = new JerseyModel();
-        $this->ApparelModel = new ApparelModel();
         $this->UserModel = new UserModel();
+        $this->CartModel = new CartModel();
+        $this->CartItemModel = new CartItemModel();
+        $this->ApparelModel = new ApparelModel();
+        $this->KlubModel = new KlubModel();
     }
 
 
     public function index()
-    {
+    { //  template
+        $userId = user_id(); // Ambil user_id dari sesi atau cara Anda yang sesuai
+        $cart = $this->CartModel->getCartByUserId($userId);
+        if (!$cart) {
+            // Jika tidak ada keranjang, buat keranjang baru untuk user
+            $cartId = $this->CartModel->createCart($userId);
+            $cart = $this->CartModel->find($cartId);
+        }
+        // template
 
         $Apparel = $this->ApparelModel->findAll();
         $data = [
             'title' => 'kios bola',
             'activePage' => 'home',
-            'Apparel' => $Apparel
+            'Apparel' => $Apparel,
+            'totalItemsInCart' => $this->CartItemModel->getTotalItemsInCart($userId)
         ];
         return view('pages/index', $data);
     }
     public function about()
-    {
+    { //  template
+        $userId = user_id(); // Ambil user_id dari sesi atau cara Anda yang sesuai
+        $cart = $this->CartModel->getCartByUserId($userId);
+        if (!$cart) {
+            // Jika tidak ada keranjang, buat keranjang baru untuk user
+            $cartId = $this->CartModel->createCart($userId);
+            $cart = $this->CartModel->find($cartId);
+        }
+        // template
         $Jersey = new JerseyModel();
         $Klub = new KlubModel();
         $Apparel = new ApparelModel();
@@ -50,20 +75,38 @@ class page extends BaseController
             'totalApparels' => $Apparel->getCount(),
             'totalklub' => $Klub->getCount(),
             'totalJersey' => $Jersey->getCount(),
-            'totalUser' => $Users->getCount()
+            'totalUser' => $Users->getCount(),
+            'totalItemsInCart' => $this->CartItemModel->getTotalItemsInCart($userId)
         ];
         return view('pages/about', $data);
     }
     public function contact()
-    {
+    { //  template
+        $userId = user_id(); // Ambil user_id dari sesi atau cara Anda yang sesuai
+        $cart = $this->CartModel->getCartByUserId($userId);
+        if (!$cart) {
+            // Jika tidak ada keranjang, buat keranjang baru untuk user
+            $cartId = $this->CartModel->createCart($userId);
+            $cart = $this->CartModel->find($cartId);
+        }
+        // template
         $data = [
             'title' => 'contact us',
-            'activePage' => 'contact'
+            'activePage' => 'contact',
+            'totalItemsInCart' => $this->CartItemModel->getTotalItemsInCart($userId)
         ];
         return view('pages/contact', $data);
     }
     public function pricing()
-    {
+    { //  template
+        $userId = user_id(); // Ambil user_id dari sesi atau cara Anda yang sesuai
+        $cart = $this->CartModel->getCartByUserId($userId);
+        if (!$cart) {
+            // Jika tidak ada keranjang, buat keranjang baru untuk user
+            $cartId = $this->CartModel->createCart($userId);
+            $cart = $this->CartModel->find($cartId);
+        }
+        // template
         helper(['form', 'url']);
         $keyword = $this->request->getGet('keyword');
         if ($keyword) {
@@ -76,6 +119,7 @@ class page extends BaseController
             'Klub' => $this->KlubModel->paginate(8, 'klub'),
             'pager' => $this->KlubModel->pager,
             'keyword' => $keyword,
+            'totalItemsInCart' => $this->CartItemModel->getTotalItemsInCart($userId)
 
 
         ];

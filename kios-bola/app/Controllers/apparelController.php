@@ -2,27 +2,51 @@
 
 namespace App\Controllers;
 
+use App\Models\JerseyModel;
+use \Myth\Auth\Models\UserModel;
+use App\Models\CartModel;
+use App\Models\CartItemModel;
 use App\Models\ApparelModel;
+use App\Models\KlubModel;
 
 class ApparelController extends BaseController
 {
-    protected $helpers = ['form', 'session', 'validation'];
+    protected $JerseyModel;
+    protected $UserModel;
+    protected $CartModel;
+    protected $CartItemModel;
     protected $ApparelModel;
+    protected $KlubModel;
+
 
     public function __construct()
     {
+        $this->JerseyModel = new JerseyModel();
+        $this->UserModel = new UserModel();
+        $this->CartModel = new CartModel();
+        $this->CartItemModel = new CartItemModel();
         $this->ApparelModel = new ApparelModel();
+        $this->KlubModel = new KlubModel();
     }
 
     public function index()
     {
         $apparel = $this->ApparelModel->findAll();
-
+        //  template
+        $userId = user_id(); // Ambil user_id dari sesi atau cara Anda yang sesuai
+        $cart = $this->CartModel->getCartByUserId($userId);
+        if (!$cart) {
+            // Jika tidak ada keranjang, buat keranjang baru untuk user
+            $cartId = $this->CartModel->createCart($userId);
+            $cart = $this->CartModel->find($cartId);
+        }
+        // template
         $data = [
             'title' => 'Create Apparel',
             'activePage' => 'apparel',
             'apparel' => $apparel,
-            'validation' => \Config\Services::validation()
+            'validation' => \Config\Services::validation(),
+            'totalItemsInCart' => $this->CartItemModel->getTotalItemsInCart($userId)
         ];
 
         return view('apparel/create', $data); // Sesuaikan dengan path template yang sesuai
@@ -97,12 +121,21 @@ class ApparelController extends BaseController
     public function edit($slug)
     {
         $apparel = $this->ApparelModel->where('slug', $slug)->first();
-
+        //  template
+        $userId = user_id(); // Ambil user_id dari sesi atau cara Anda yang sesuai
+        $cart = $this->CartModel->getCartByUserId($userId);
+        if (!$cart) {
+            // Jika tidak ada keranjang, buat keranjang baru untuk user
+            $cartId = $this->CartModel->createCart($userId);
+            $cart = $this->CartModel->find($cartId);
+        }
+        // template
         $data = [
             'title' => 'Edit Apparel',
             'activePage' => 'apparel',
             'apparel' => $apparel,
-            'validation' => \Config\Services::validation()
+            'validation' => \Config\Services::validation(),
+            'totalItemsInCart' => $this->CartItemModel->getTotalItemsInCart($userId)
         ];
 
         return view('apparel/edit', $data); // Sesuaikan dengan path template yang sesuai

@@ -48,6 +48,8 @@ class Autoload extends AutoloadConfig
         APP_NAMESPACE => APPPATH, // For custom app namespace
         'App'         => APPPATH,
         'Myth\Auth'   => APPPATH . 'ThirdParty/myth-auth/src',
+        'CodeIgniterCart' => ROOTPATH . 'vendor/jason-napolitano/codeigniter4-cart-module/src',
+        // 'Session'     => SYSTEMPATH . 'Session',
     ];
 
     /**
@@ -67,7 +69,9 @@ class Autoload extends AutoloadConfig
      *
      * @var array<string, string>
      */
-    public $classmap = [];
+    public $classmap = [
+        // 'Session' => SYSTEMPATH . 'Session/Session.php', // Tambahkan baris ini untuk memuat Session
+    ];
 
     /**
      * -------------------------------------------------------------------
@@ -97,5 +101,5 @@ class Autoload extends AutoloadConfig
      *
      * @var list<string>
      */
-    public $helpers = ['url', 'form', 'session'];
+    public $helpers = ['url', 'form', 'session', 'auth', 'CartHelper'];
 }

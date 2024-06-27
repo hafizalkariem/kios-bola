@@ -23,6 +23,12 @@
     </div>
   </section><!-- End Search Box -->
 
+  <?php if (session()->getFlashdata('pesan')) : ?>
+    <div class="alert alert-success" role="alert">
+      <?= session()->getFlashdata('pesan'); ?>
+    </div>
+  <?php endif; ?>
+
 
   <!-- ======= Pricing Section ======= -->
   <section id="pricing" class="pricing">

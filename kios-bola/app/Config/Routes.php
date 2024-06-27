@@ -54,10 +54,20 @@ $routes->delete('/admin/apparel/(:num)', 'apparelController::delete/$1', ['filte
 
 // profile auth
 $routes->group('', ['filter' => 'login'], function ($routes) {
-    $routes->get('/profile', 'Profile::index');
-    $routes->get('/profile/edit', 'Profile::edit');
-    $routes->post('/profile/update', 'Profile::update');
+    $routes->get('profile', 'Profile::index', ['as' => 'profile']);
+    $routes->post('profile/update', 'Profile::update', ['as' => 'profile.update']);
 });
 
+// $routes->group('', ['filter' => 'login'], function ($routes) {
+//     $routes->get('/profile', 'Profile::index');
+//     $routes->get('/profile/edit', 'Profile::edit');
+//     $routes->post('/profile/update', 'Profile::update');
+// });
 
-$routes->setAutoRoute(true);
+$routes->group('cart', ['namespace' => 'App\Controllers'], function ($routes) {
+    $routes->get('/', 'CartController::index');
+    $routes->get('add/(:num)', 'CartController::addToCart/$1');
+    $routes->get('clear', 'CartController::clear');
+});
+
+$routes->get('cart/cek', 'CartController::cek');

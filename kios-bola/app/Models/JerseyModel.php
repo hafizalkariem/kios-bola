@@ -48,6 +48,10 @@ class JerseyModel extends Model
             ->orLike('slug', $keyword)
             ->orLike('id', $keyword);
     }
+    public function findJerseyWithId($jerseyId)
+    {
+        return $this->where('id', $jerseyId)->first();
+    }
 }
     // public function getJerseys()
     // {

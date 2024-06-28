@@ -38,6 +38,7 @@
                                             <a href="<?= base_url('cart/add/' . $j['id']); ?>" class="add-to-cart">
                                                 <i class="fa-solid fa-cart-plus fa-2xl" style="color: #cf1006;"></i>
                                             </a>
+
                                             <div class="divider-vertical"></div>
                                             <button type="submit" class="btn">
                                                 <i class="fas fa-credit-card fa-2xl" style="color: #cf1006;"></i>

@@ -46,6 +46,14 @@ class CartController extends BaseController
         // Ambil semua item dari keranjang belanja user
         $cartItems = $this->CartItemModel->where('cart_id', $cart['id'])->findAll();
 
+        echo "<pre>";
+        var_dump($cartItems);
+        echo "</pre>";
+
+        echo "<pre>";
+        print_r($cartItems);
+        echo "</pre>";
+
         // Ambil informasi jersey untuk setiap item dalam keranjang
         foreach ($cartItems as &$item) {
             // Ambil informasi jersey dari JerseyModel berdasarkan jersey_id
@@ -71,31 +79,39 @@ class CartController extends BaseController
 
         return view('cart/index', $data);
     }
-    // public function index()
-    // {
-    //     helper(['form', 'url']);
-    //     $cart = session()->get('cart');
-    //     $data = [
-    //         'cart' => $cart,
-    //         'title' => 'keranjang belanja',
-    //         'activePage' => 'jersey',
-
-    //     ];
-    //     return view('cart/index', $data);
-    // }
-
     public function addToCart($jerseyId)
     {
-        $userId = user_id(); // Anda harus menyesuaikan dengan cara Anda mengambil user_id dari session
+        helper('number');
+        $userId = user_id();
+        $jerseyId = $this->request->getPost('jersey_id');
+        $quantity = $this->request->getPost('quantity') ?? 1;
+        $price = $this->request->getPost('price');
 
+        // Ambil data jersey berdasarkan ID
         $jersey = $this->JerseyModel->find($jerseyId);
         if (!$jersey) {
             throw new \RuntimeException('Jersey tidak ditemukan.');
         }
+        // Debugging: Output data jersey
+        // echo '<pre>';
+        // print_r($jersey);
+        // echo '</pre>';
+        // exit;
+
+        $quantity = $this->request->getPost('quantity') ?? 1;
+
+        // Pastikan harga tersedia dalam $jersey sebelum menggunakannya
+        $jersey = $this->JerseyModel->findAll();
+        // if (isset($jersey['harga'])) {
+        //     // Lakukan operasi dengan $jersey['harga']
+
+        //     // ...
+        // } else {
+        //     throw new \RuntimeException('Harga tidak ditemukan dalam data jersey.');
+        // }
 
         // Cari keranjang user berdasarkan user_id
         $cart = $this->CartModel->getCartByUserId($userId);
-
         if (!$cart) {
             // Jika tidak ada keranjang, buat keranjang baru untuk user
             $cartId = $this->CartModel->createCart($userId);
@@ -116,8 +132,8 @@ class CartController extends BaseController
             $this->CartItemModel->save([
                 'cart_id' => $cart['id'],
                 'jersey_id' => $jerseyId,
-                'quantity' => 1, // Jumlah barang bisa disesuaikan sesuai kebutuhan
-                'price' => $jersey['harga'],
+                'quantity' => $quantity, // Jumlah barang bisa disesuaikan sesuai kebutuhan
+                'price' => $price,
                 'created_at' => date('Y-m-d H:i:s'),
             ]);
         }
@@ -126,28 +142,6 @@ class CartController extends BaseController
 
         return redirect()->to('/cart');
     }
-
-    // public function add($id)
-    // {
-    //     $jersey = $this->JerseyModel->find($id);
-    //     if (!$jersey) {
-    //         throw new \RuntimeException('Jersey tidak ditemukan.');
-    //     }
-    //     $cart = session()->get('cart') ?? [];
-    //     $cart[] = [
-    //         'id' => $jersey['id'],
-    //         'name' => $jersey['judul'],
-    //         'price' => $jersey['harga'],
-    //         'image' => $jersey['sampul']
-    //     ];
-
-    //     session()->set('cart', $cart);
-
-    //     session()->setFlashdata('pesan', 'Jersey telah ditambahkan ke keranjang.');
-
-    //     return redirect()->back();
-    // }
-
 
     public function cek()
     {
@@ -161,6 +155,7 @@ class CartController extends BaseController
 
     public function remove($rowid)
     {
+        // load services cart
         $cart = \Config\Services::cart();
         $cart->remove($rowid);
         session()->setFlashdata('pesan', 'Barang berhasil dihapus dari keranjang');

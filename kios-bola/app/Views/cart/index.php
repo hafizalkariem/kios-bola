@@ -12,7 +12,8 @@
                     <h3 class="card-title"><strong>Keranjang belanja <i class="fa-solid fa-cart-plus fa-md"></i></strong></h3>
                 </div>
                 <?php if (empty($cartItems)) : ?>
-                    <p>Keranjang belanja Anda kosong.</p>
+                    <hr>
+                    <h4 class="text-center text-danger mt-3 my-5">Keranjang belanja Anda kosong!!</h4>
                 <?php else : ?>
                     <?php if (session()->getFlashdata('pesan')) : ?>
                         <div class="alert alert-success mx-4" role="alert">

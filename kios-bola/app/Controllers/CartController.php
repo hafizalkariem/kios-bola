@@ -9,6 +9,7 @@ use App\Models\CartItemModel;
 use App\Models\ApparelModel;
 use App\Models\KlubModel;
 use CodeIgniterCart\Cart;
+use CodeIgniter\Database\Exceptions\DatabaseException;
 
 use \Config\Services;
 
@@ -46,14 +47,6 @@ class CartController extends BaseController
         // Ambil semua item dari keranjang belanja user
         $cartItems = $this->CartItemModel->where('cart_id', $cart['id'])->findAll();
 
-        echo "<pre>";
-        var_dump($cartItems);
-        echo "</pre>";
-
-        echo "<pre>";
-        print_r($cartItems);
-        echo "</pre>";
-
         // Ambil informasi jersey untuk setiap item dalam keranjang
         foreach ($cartItems as &$item) {
             // Ambil informasi jersey dari JerseyModel berdasarkan jersey_id
@@ -79,52 +72,73 @@ class CartController extends BaseController
 
         return view('cart/index', $data);
     }
+
+    // public function index()
+    // {
+    //     helper(['form', 'url']);
+
+    //     // Ambil data keranjang dari sesi
+    //     $cart = session()->get('cart');
+    //     $userId = session()->get('user_id');
+    //     $cartItems = [];
+
+    //     // Ambil informasi jersey untuk setiap item dalam keranjang
+    //     if ($cart) {
+    //         foreach ($cart as $jerseyId => $item) {
+    //             $jersey = $this->JerseyModel->find($jerseyId);
+    //             if ($jersey) {
+    //                 $cartItems[] = [
+    //                     'id' => $jersey['id'],
+    //                     'name' => $jersey['judul'],
+    //                     'price' => $jersey['harga'],
+    //                     'quantity' => $item['quantity'],
+    //                     'subtotal' => $item['quantity'] * $jersey['harga'],
+    //                     'image' => $jersey['sampul']
+    //                 ];
+    //             }
+    //         }
+    //     }
+
+    //     $data = [
+    //         'cartItems' => $cartItems,
+    //         'title' => 'Keranjang Belanja',
+    //         'activePage' => 'jersey',
+    //         'totalItemsInCart' => $this->CartItemModel->getTotalItemsInCart($userId)
+    //     ];
+
+    //     return view('cart/index', $data);
+    // }
+
     public function addToCart($jerseyId)
     {
-        helper('number');
-        $userId = user_id();
-        $jerseyId = $this->request->getPost('jersey_id');
-        $quantity = $this->request->getPost('quantity') ?? 1;
-        $price = $this->request->getPost('price');
 
-        // Ambil data jersey berdasarkan ID
+
+        $userId = user_id(); // Anda harus menyesuaikan dengan cara Anda mengambil user_id dari session
+
         $jersey = $this->JerseyModel->find($jerseyId);
         if (!$jersey) {
             throw new \RuntimeException('Jersey tidak ditemukan.');
         }
-        // Debugging: Output data jersey
-        // echo '<pre>';
-        // print_r($jersey);
-        // echo '</pre>';
-        // exit;
-
-        $quantity = $this->request->getPost('quantity') ?? 1;
-
-        // Pastikan harga tersedia dalam $jersey sebelum menggunakannya
-        $jersey = $this->JerseyModel->findAll();
-        // if (isset($jersey['harga'])) {
-        //     // Lakukan operasi dengan $jersey['harga']
-
-        //     // ...
-        // } else {
-        //     throw new \RuntimeException('Harga tidak ditemukan dalam data jersey.');
-        // }
+        if ($jersey['ketersediaan'] == 0) {
+            throw new \RuntimeException('Jersey tidak tersedia untuk dibeli saat ini.');
+        }
 
         // Cari keranjang user berdasarkan user_id
         $cart = $this->CartModel->getCartByUserId($userId);
+
         if (!$cart) {
             // Jika tidak ada keranjang, buat keranjang baru untuk user
             $cartId = $this->CartModel->createCart($userId);
             $cart = $this->CartModel->find($cartId);
         }
 
-        // Cek apakah item dengan jersey_id ini sudah ada dalam cartItems
+        // Cek apakah item dengan jersey_id ini sudah ada dalam cartItems milik pengguna saat ini
         $existingItem = $this->CartItemModel->where('cart_id', $cart['id'])
             ->where('jersey_id', $jerseyId)
             ->first();
 
         if ($existingItem) {
-            // Jika sudah ada, update jumlahnya
+            // Jika sudah ada dalam keranjang yang sama, update jumlahnya
             $newQuantity = $existingItem['quantity'] + 1;
             $this->CartItemModel->update($existingItem['id'], ['quantity' => $newQuantity]);
         } else {
@@ -132,16 +146,57 @@ class CartController extends BaseController
             $this->CartItemModel->save([
                 'cart_id' => $cart['id'],
                 'jersey_id' => $jerseyId,
-                'quantity' => $quantity, // Jumlah barang bisa disesuaikan sesuai kebutuhan
-                'price' => $price,
+                'quantity' => 1, // Jumlah barang bisa disesuaikan sesuai kebutuhan
+                'price' => $jersey['harga'],
                 'created_at' => date('Y-m-d H:i:s'),
             ]);
         }
+
+        // Setelah menambahkan atau mengupdate keranjang, Anda bisa memperbarui ketersediaan barang jika dibutuhkan
+        // $this->JerseyModel->update($jerseyId, ['sedang_dipesan' => true]);
 
         session()->setFlashdata('pesan', 'Jersey telah ditambahkan ke keranjang.');
 
         return redirect()->to('/cart');
     }
+
+
+    // public function addToCart($jerseyId)
+    // {
+    //     $userId = user_id(); // Anda harus menyesuaikan dengan cara Anda mengambil user_id dari session
+
+    //     $jersey = $this->JerseyModel->find($jerseyId);
+    //     if (!$jersey) {
+    //         throw new \RuntimeException('Jersey tidak ditemukan.');
+    //     }
+
+    //     if ($jersey['ketersediaan'] == 0) {
+    //         throw new \RuntimeException('Jersey tidak tersedia untuk dibeli saat ini.');
+    //     }
+
+    //     // Ambil data keranjang dari sesi
+    //     $cart = session()->get('cart') ?? [];
+
+    //     // Cek apakah item dengan jersey_id ini sudah ada dalam keranjang
+    //     if (isset($cart[$jerseyId])) {
+    //         // Jika sudah ada, update jumlahnya
+    //         $cart[$jerseyId]['quantity'] += 1;
+    //     } else {
+    //         // Jika belum ada, tambahkan sebagai item baru
+    //         $cart[$jerseyId] = [
+    //             'quantity' => 1,
+    //             'price' => $jersey['harga']
+    //         ];
+    //     }
+
+    //     // Simpan kembali data keranjang ke sesi
+    //     session()->set('cart', $cart);
+
+    //     session()->setFlashdata('pesan', 'Jersey telah ditambahkan ke keranjang.');
+
+    //     return redirect()->to('/cart');
+    // }
+
 
     public function cek()
     {
@@ -155,12 +210,20 @@ class CartController extends BaseController
 
     public function remove($rowid)
     {
-        // load services cart
-        $cart = \Config\Services::cart();
-        $cart->remove($rowid);
-        session()->setFlashdata('pesan', 'Barang berhasil dihapus dari keranjang');
+        // Ambil id item dari session atau request sesuai dengan kebutuhan
+        $itemId = $rowid; // Atau sesuaikan dengan cara Anda untuk mendapatkan item ID
+
+        // Hapus item dari cart menggunakan CartItemModel
+        try {
+            $this->CartItemModel->delete($itemId);
+            session()->setFlashdata('pesan', 'Barang berhasil dihapus dari keranjang.');
+        } catch (\Exception $e) {
+            session()->setFlashdata('error', 'Gagal menghapus barang dari keranjang: ' . $e->getMessage());
+        }
+
         return redirect()->to('/cart');
     }
+
 
     public function updateCart()
     {

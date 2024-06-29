@@ -123,12 +123,12 @@ class ApparelController extends BaseController
         $apparel = $this->ApparelModel->where('slug', $slug)->first();
         //  template
         $userId = user_id(); // Ambil user_id dari sesi atau cara Anda yang sesuai
-        $cart = $this->CartModel->getCartByUserId($userId);
-        if (!$cart) {
-            // Jika tidak ada keranjang, buat keranjang baru untuk user
-            $cartId = $this->CartModel->createCart($userId);
-            $cart = $this->CartModel->find($cartId);
-        }
+        // $cart = $this->CartModel->getCartByUserId($userId);
+        // if (!$cart) {
+        //     // Jika tidak ada keranjang, buat keranjang baru untuk user
+        //     $cartId = $this->CartModel->createCart($userId);
+        //     $cart = $this->CartModel->find($cartId);
+        // }
         // template
         $data = [
             'title' => 'Edit Apparel',

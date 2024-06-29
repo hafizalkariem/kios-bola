@@ -40,12 +40,12 @@ class Jersey extends BaseController
         }
         //  template
         $userId = user_id(); // Ambil user_id dari sesi atau cara Anda yang sesuai
-        $cart = $this->CartModel->getCartByUserId($userId);
-        if (!$cart) {
-            // Jika tidak ada keranjang, buat keranjang baru untuk user
-            $cartId = $this->CartModel->createCart($userId);
-            $cart = $this->CartModel->find($cartId);
-        }
+        // $cart = $this->CartModel->getCartByUserId($userId);
+        // if (!$cart) {
+        //     // Jika tidak ada keranjang, buat keranjang baru untuk user
+        //     $cartId = $this->CartModel->createCart($userId);
+        //     $cart = $this->CartModel->find($cartId);
+        // }
         // template
         $data = [
             'title' => 'Jersey | Kios Bola',
@@ -62,12 +62,12 @@ class Jersey extends BaseController
 
     { //  template
         $userId = user_id(); // Ambil user_id dari sesi atau cara Anda yang sesuai
-        $cart = $this->CartModel->getCartByUserId($userId);
-        if (!$cart) {
-            // Jika tidak ada keranjang, buat keranjang baru untuk user
-            $cartId = $this->CartModel->createCart($userId);
-            $cart = $this->CartModel->find($cartId);
-        }
+        // $cart = $this->CartModel->getCartByUserId($userId);
+        // if (!$cart) {
+        //     // Jika tidak ada keranjang, buat keranjang baru untuk user
+        //     $cartId = $this->CartModel->createCart($userId);
+        //     $cart = $this->CartModel->find($cartId);
+        // }
         // template
         $Klub = $this->KlubModel->findAll();
         $Apparel = $this->ApparelModel->findAll();
@@ -188,12 +188,12 @@ class Jersey extends BaseController
         $Apparel = $this->ApparelModel->findAll();
         //  template
         $userId = user_id(); // Ambil user_id dari sesi atau cara Anda yang sesuai
-        $cart = $this->CartModel->getCartByUserId($userId);
-        if (!$cart) {
-            // Jika tidak ada keranjang, buat keranjang baru untuk user
-            $cartId = $this->CartModel->createCart($userId);
-            $cart = $this->CartModel->find($cartId);
-        }
+        // $cart = $this->CartModel->getCartByUserId($userId);
+        // if (!$cart) {
+        //     // Jika tidak ada keranjang, buat keranjang baru untuk user
+        //     $cartId = $this->CartModel->createCart($userId);
+        //     $cart = $this->CartModel->find($cartId);
+        // }
         // template
         // Prepare data to pass to view
         $data = [

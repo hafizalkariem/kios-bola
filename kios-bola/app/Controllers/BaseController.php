@@ -41,7 +41,7 @@ abstract class BaseController extends Controller
      *
      * @var list<string>
      */
-    protected $helpers = ['auth', 'number', 'cart_helper', 'AuthHelper'];
+    protected $helpers = ['auth', 'number', 'cart_helper',];
 
     /**
      * Be sure to declare properties for any property fetch you initialized.

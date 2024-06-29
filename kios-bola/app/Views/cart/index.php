@@ -9,7 +9,7 @@
         <div class="col-md-8">
             <div class="card shadow">
                 <div class="d-flex justify-content-start align-items-center mt-5 mb-3 mx-4">
-                    <h3 class="card-title"><strong>Keranjang belanja <i class="fa-solid fa-cart-plus fa-md"></i></strong></h3>
+                    <h3 class="card-title"><strong><i class="fa-solid fa-cart-plus fa-md"></i> Keranjang belanja</strong></h3>
                 </div>
                 <?php if (empty($cartItems)) : ?>
                     <hr>
@@ -23,7 +23,7 @@
                     <div class="card-body p-4">
                         <div class="table-responsive">
                             <table id="basic-datatables" class="display table table-striped table-hover">
-                                <thead class="text-center">
+                                <!-- <thead class="text-center">
                                     <tr>
                                         <th scope="col">#</th>
                                         <th scope="col">Gambar</th>
@@ -33,21 +33,42 @@
                                         <th scope="col">Subtotal</th>
                                         <th scope="col">Aksi</th>
                                     </tr>
-                                </thead>
+                                </thead> -->
 
                                 <tbody class="text-center">
                                     <?php foreach ($cartItems as $index => $item) : ?>
                                         <tr>
-                                            <th scope="row"><?= $index + 1 ?></th>
+                                            <!-- <th scope="row"><?= $index + 1 ?></th> -->
                                             <td>
                                                 <img src="<?= base_url('asset/img/jersey/' . $item['image']); ?>" class="sampul" alt="<?= esc($item['name']) ?>" style="height: 100px;">
                                             <td class="align-middle"><?= esc($item['name']) ?></td>
                                             <td class="align-middle"><strong><?= esc(number_to_currency($item['price'], 'IDR')) ?></strong></td>
                                             <td class="align-middle"><?= esc($item['quantity']) ?></td>
                                             <td class="align-middle"><strong><?= esc(number_to_currency($item['subtotal'], 'IDR')) ?></strong></td>
-                                            <td class="align-middle">
-                                                <a href="<?= base_url('/cart/remove/' . $item['id']) ?>" class="btn btn-sm btn-danger">Hapus</a>
+                                            <!-- <td class="align-middle">
+                                                <div class="row"><a href="<?= base_url('/cart/remove/' . $item['id']) ?>" class="btn btn-sm btn-danger">Hapus</a></div>
+
+                                            </td> -->
+                                            <td class="align-middle bg-danger" onclick="hapusItem(<?= $item['id'] ?>)">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <span class="text-white">Hapus</span>
+                                                    </div>
+                                                </div>
                                             </td>
+
+                                            <script>
+                                                function hapusItem(itemId) {
+                                                    if (confirm('Apakah Anda yakin ingin menghapusnya?')) {
+                                                        window.location.href = '<?= base_url("/cart/remove") ?>/' + itemId;
+                                                    }
+                                                }
+                                            </script>
+
+
+
+
+
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>

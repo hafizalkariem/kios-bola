@@ -66,7 +66,10 @@ $routes->group('', ['filter' => 'login'], function ($routes) {
 
 $routes->group('cart', ['namespace' => 'App\Controllers'], function ($routes) {
     $routes->get('/', 'CartController::index');
+    $routes->delete('/(:num)', 'CartController::remove/$1');
     $routes->get('add/(:num)', 'CartController::addToCart/$1');
+
+    $routes->get('remove/(:num)', 'CartController::remove/$1', ['as' => 'cart.remove']);
     $routes->get('clear', 'CartController::clear');
 });
 
